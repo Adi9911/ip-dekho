@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ip-dekho.vercel.app/sitemap.xml
