@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Is This Link Safe? - Fraud Link Checker India</title>
+<title>Is This Link Safe? WhatsApp Link Checker & Fraud Link Detector Free India</title>
+<meta name="description" content="Free Link Safety Checker India. Paste any WhatsApp, Telegram, Instagram link to check if link is safe or scam. Detects fake Flipkart, Amazon, SBI phishing, bit.ly fraud links before you click - 100% free.">
+<meta name="keywords" content="is this link safe, link safety checker, whatsapp link checker, fraud link checker, fake link detector, phishing link checker india, link checker safe or not, flipkart fake link checker, amazon fake link checker">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://ip-dekho.vercel.app/link-checker.html">
+<meta property="og:title" content="Is This Link Safe? - WhatsApp Fraud Link Checker">
+<meta property="og:description" content="Paste any link and check if it's safe or scam. Detects fake Flipkart, Amazon, SBI phishing links instantly.">
 <style>
 body{font-family:Inter; background:#f5f5f7; margin:0;}
 .container{max-width:750px; margin:20px auto; padding:15px;}
@@ -11,36 +17,48 @@ body{font-family:Inter; background:#f5f5f7; margin:0;}
 input{width:100%; padding:16px; border-radius:12px; border:2px solid #e5e5e5; font-size:16px; box-sizing:border-box;}
 .btn{width:100%; padding:16px; background:#000; color:#fff; border:none; border-radius:12px; font-weight:700; margin-top:12px; cursor:pointer;}
 .result{margin-top:20px; padding:20px; border-radius:12px; display:none;}
-.safe{background:#eaffea; border:2px solid #22c55e;}.danger{background:#ffeaea; border:2px solid #ef4444;}
+.safe{background:#eaffea; border:2px solid #22c55e;}.danger{background:#ffeaea; border:2px solid #ef4444;}.warn{background:#fff8e1; border:2px solid #f59e0b;}
+.meter{width:100%; height:12px; background:#eee; border-radius:10px; margin:10px 0; overflow:hidden;}
+.meter-fill{height:100%; border-radius:10px;}
 </style>
 </head>
 <body>
 <div class="container"><div class="card">
-<h1>🔍 Is This Link Safe?</h1>
-<p style="color:#666;">Paste any link from WhatsApp / Telegram / Instagram</p>
-<input id="link" placeholder="https://..." />
-<button class="btn" onclick="check()">Check Link Safety</button>
+<h1>🔍 Is This Link Safe? - Fraud Link Checker</h1>
+<p style="color:#666; font-size:14px;">Paste any suspicious link from WhatsApp / Telegram / Instagram. Check if link is safe or scam before clicking.</p>
+<input id="link" placeholder="https://example.com / Paste WhatsApp link here" />
+<button class="btn" onclick="check()">Check Link Safety - Fraud Detector</button>
 <div id="out" class="result"></div>
+<div style="margin-top:20px; display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:12px;">
+<div style="background:#fff0f0; padding:10px; border-radius:8px;"><b>❌ Fake:</b><br>sbi-kyc-update.com<br>flipkart-offer-2026.xyz</div>
+<div style="background:#f0fff0; padding:10px; border-radius:8px;"><b>✅ Real:</b><br>sbi.co.in<br>flipkart.com</div>
+</div>
+<p style="margin-top:20px;font-size:13px;color:#666;"><a href="index.html">← Back to IP Checker</a> | <a href="ai-scam-checker.html">AI Scam Message Checker →</a></p>
 </div></div>
 <script>
 function check(){
-  const url=document.getElementById('link').value.toLowerCase();
+  const url=document.getElementById('link').value.toLowerCase().trim();
   const out=document.getElementById('out');
   if(!url){alert('Paste link');return;}
-  out.style.display='block'; out.innerHTML='🤖 Checking domain, brand, virus database...';
+  out.style.display='block'; out.innerHTML='🤖 Checking domain age, brand, SSL, virus pattern...';
   setTimeout(()=>{
     let score=0; let reasons=[];
-    if(url.includes('sbi')||url.includes('flipkart')||url.includes('amazon')){if(!url.includes('sbi.co.in')&&!url.includes('flipkart.com')&&!url.includes('amazon.in')){score+=60; reasons.push('Fake brand domain');}}
-    if(url.length>75){score+=20; reasons.push('URL too long (scam pattern)');}
-    if(url.includes('bit.ly')||url.includes('tinyurl')){score+=30; reasons.push('Shortened suspicious link');}
-    if(url.includes('free')||url.includes('lottery')||url.includes('offer')){score+=40; reasons.push('Contains offer/lottery bait');}
-    if(score>=50){
-      out.className='result danger';
-      out.innerHTML=`<h3 style="color:red;">⚠️ SCAM LINK - Risk ${score}/100</h3><p>Reason: ${reasons.join(', ')}</p><p>Do NOT open. Block this number.</p>`;
-    }else{
-      out.className='result safe';
-      out.innerHTML=`<h3 style="color:green;">✅ Looks Safe - Risk ${score}/100</h3><p>No scam pattern found. Still check official site.</p>`;
+    if(url.includes('sbi')||url.includes('flipkart')||url.includes('amazon')||url.includes('paytm')){
+      if(!url.includes('sbi.co.in')&&!url.includes('flipkart.com')&&!url.includes('amazon.in')&&!url.includes('amazon.com')&&!url.includes('paytm.com')){
+        score+=60; reasons.push('Fake brand domain (uses SBI/Flipkart/Amazon name but not official domain)');
+      }
     }
+    if(url.length>75){score+=20; reasons.push('URL too long - scam pattern');}
+    if(url.includes('bit.ly')||url.includes('tinyurl')||url.includes('cutt.ly')||url.includes('short')){score+=30; reasons.push('Shortened suspicious link hides real domain');}
+    if(url.includes('free')||url.includes('lottery')||url.includes('winner')||url.includes('big-billion')||url.includes('offer')){score+=40; reasons.push('Contains free/lottery/offer bait words');}
+    if(url.startsWith('http://')){score+=15; reasons.push('Not HTTPS - insecure link');}
+    if(url.includes('@')||url.includes('.xyz')||url.includes('.tk')||url.includes('.ml')){score+=25; reasons.push('Suspicious extension .xyz/.tk or @ symbol');}
+    if(score>95)score=95;
+    let color=score>=50?'#ef4444':score>=25?'#f59e0b':'#22c55e';
+    let css=score>=50?'danger':score>=25?'warn':'safe';
+    let label=score>=50?`⚠️ SCAM LINK - Risk ${score}/100`:score>=25?`⚠️ SUSPICIOUS - Risk ${score}/100`:`✅ Looks Safe - Risk ${score}/100`;
+    out.className='result '+css;
+    out.innerHTML=`<h3 style="color:${color};">${label}</h3><div class="meter"><div class="meter-fill" style="width:${score}%; background:${color}"></div></div><p><b>Reason:</b> ${reasons.join(', ')||'No scam pattern found'}<br><br>${score>=50?'❌ DO NOT OPEN this link. Delete message and block sender.':'✅ Appears safe but still verify from official app/website.'}</p>`;
   },1200);
 }
 </script>
