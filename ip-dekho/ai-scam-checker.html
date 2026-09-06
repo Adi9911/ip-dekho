@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Scam Message Checker - Free Fraud Detector India</title>
+<title>AI Scam Message Checker India - SBI KYC, Electricity Bill Fraud Detector Free</title>
+<meta name="description" content="Free AI Scam Message Checker India. Paste any SMS or WhatsApp message to detect SBI KYC scam, electricity bill scam, lottery fraud, job scam. Offline AI fraud message detector - 100% free, no API key.">
+<meta name="keywords" content="ai scam checker, fraud message checker india, sbi kyc scam checker, electricity bill scam checker, lottery scam checker, whatsapp scam checker, fraud message detector free, scam sms checker">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://ip-dekho.vercel.app/ai-scam-checker.html">
+<meta property="og:title" content="AI Scam Checker India - Detect SBI, Electricity Bill Fraud">
+<meta property="og:description" content="Paste any SMS/WhatsApp message. AI detects SBI KYC, Electricity Bill, Lottery scam in 1 sec - Free">
 <style>
 body{font-family:Inter, system-ui; background:#f5f5f7; margin:0;}
 .container{max-width:750px; margin:20px auto; padding:15px;}
@@ -20,53 +26,56 @@ textarea{width:100%; min-height:140px; padding:16px; border-radius:12px; border:
 </head>
 <body>
 <div class="container"><div class="card">
-<h1>🛡️ AI Scam Message Checker</h1>
+<h1>🛡️ AI Scam Message Checker India - Fraud Detector</h1>
+<p style="font-size:14px;color:#666;">Detect SBI KYC Scam, Electricity Bill Fraud, Lottery & Job Scam in 1 second - Free & Offline</p>
 <div style="display:flex; gap:8px; flex-wrap:wrap; margin:10px 0;">
 <button class="btn2" onclick="setEx('sbi')">SBI KYC Scam</button>
 <button class="btn2" onclick="setEx('lottery')">Lottery Scam</button>
 <button class="btn2" onclick="setEx('job')">Job Scam</button>
+<button class="btn2" onclick="setEx('electric')">Electricity Scam</button>
 </div>
-<textarea id="msg" placeholder="Paste suspicious message here..."></textarea>
-<button class="btn" onclick="analyze()">Check Now - AI Scan</button>
+<textarea id="msg" placeholder="Paste suspicious SMS / WhatsApp message here... Example: Your SBI account will be blocked..."></textarea>
+<button class="btn" onclick="analyze()">Check Now - AI Fraud Scan</button>
 <div id="out" class="result"></div>
 <div id="actions" style="display:none; gap:8px; margin-top:10px;">
-<button class="btn2" onclick="copyR()">📋 Copy</button>
-<button class="btn2" onclick="shareWA()">📤 Share</button>
+<button class="btn2" onclick="copyR()">📋 Copy Result</button>
+<button class="btn2" onclick="shareWA()">📤 Share on WhatsApp</button>
 <button class="btn2" onclick="speak()">🔊 Speak</button>
 </div>
+<p style="margin-top:20px;font-size:13px;color:#666;"><a href="index.html">← Back to IP Checker</a> | <a href="link-checker.html">Check if Link is Safe →</a></p>
 </div></div>
 <script>
 let last='';
-const ex={sbi:'Your SBI account will be blocked today. Update KYC: http://sbi-kyc-update.com',lottery:'Congratulations! You won Rs 25,00,000 lottery. Claim now: http://lottery-claim-india.xyz',job:'Work from home! Earn 5000 daily. Pay Rs 500: http://job4u-online.com'};
+const ex={sbi:'Your SBI account will be blocked today. Update KYC: http://sbi-kyc-update.com',lottery:'Congratulations! You won Rs 25,00,000 lottery. Claim now: http://lottery-claim-india.xyz',job:'Work from home! Earn 5000 daily. Pay Rs 500: http://job4u-online.com',electric:'Your electricity connection will be cut tonight. Pay now: http://bijli-bill-pay.com'};
 function setEx(t){document.getElementById('msg').value=ex[t];}
 function analyze(){
   const text=document.getElementById('msg').value.toLowerCase();
   const out=document.getElementById('out');
   if(!text){alert('Paste message');return;}
-  out.style.display='block'; out.innerHTML='🤖 Analyzing...';
+  out.style.display='block'; out.innerHTML='🤖 Analyzing fraud patterns...';
   setTimeout(()=>{
     let score=0,reasons=[],type='Safe';
     const rules=[
-      {k:['account blocked','kyc update'],s:40,t:'Bank KYC Scam',r:'Bank never asks KYC via link'},
+      {k:['account blocked','kyc update','sbi'],s:40,t:'Bank KYC Scam',r:'Bank never asks KYC via link'},
       {k:['lottery','won','prize'],s:50,t:'Lottery Scam',r:'Lottery wins are 99% fake'},
       {k:['job offer','earn 5000','registration'],s:35,t:'Job Scam',r:'Takes registration fees'},
-      {k:['electricity','bijli','connection cut'],s:45,t:'Electricity Scam',r:'Trending bill scam'},
-      {k:['bit.ly','tinyurl','http://'],s:25,t:'Suspicious Link',r:'Short suspicious link'},
+      {k:['electricity','bijli','connection cut','power cut'],s:45,t:'Electricity Bill Scam',r:'Trending electricity bill scam in India'},
+      {k:['bit.ly','tinyurl','http://','cutt.ly'],s:25,t:'Suspicious Link',r:'Uses shortened suspicious link'},
       {k:['otp','share otp'],s:40,t:'OTP Fraud',r:'OTP asking is always scam'}
     ];
     rules.forEach(r=>{if(r.k.some(w=>text.includes(w))){score+=r.s;reasons.push(r.r);type=r.t;}});
     if(score>95)score=95;
     let color=score>=50?'#ef4444':score>=25?'#f59e0b':'#22c55e';
-    let status=score>=50?'SCAM':score>=25?'SUSPICIOUS':'SAFE';
+    let status=score>=50?'SCAM DETECTED':score>=25?'SUSPICIOUS':'SAFE';
     let css=score>=50?'danger':score>=25?'warn':'safe';
     out.className='result '+css;
-    out.innerHTML=`<span class="badge" style="background:${color}">${type} - ${status}</span><div class="meter"><div class="meter-fill" style="width:${score}%; background:${color}"></div></div><p><b>Risk ${score}/100</b><br>Reason: ${reasons.join(', ')||'No pattern'}<br>Advice: ${score>=50?'Delete. Do not click.':'Safe but verify.'}</p>`;
-    last=`${status} - ${type} Risk ${score}/100 - ${reasons.join(', ')}`;
+    out.innerHTML=`<span class="badge" style="background:${color}">${type} - ${status}</span><div class="meter"><div class="meter-fill" style="width:${score}%; background:${color}"></div></div><p><b>Risk Score ${score}/100</b><br><b>Why flagged:</b> ${reasons.join(', ')||'No scam pattern found'}<br><b>Advice:</b> ${score>=50?'❌ DELETE this message. DO NOT click link. Block number.':'✅ Looks safe but still verify from official app.'}</p>`;
+    last=`${status} - ${type} Risk ${score}/100 - Reason: ${reasons.join(', ')} - Checked on ip-dekho.vercel.app`;
     document.getElementById('actions').style.display='flex';
   },1000);
 }
 function copyR(){navigator.clipboard.writeText(last); alert('Copied');}
-function shareWA(){window.open('https://wa.me/?text='+encodeURIComponent(last+' Checked on ip-dekho.vercel.app'));}
+function shareWA(){window.open('https://wa.me/?text='+encodeURIComponent(last+' Checked on ip-dekho.vercel.app/ai-scam-checker.html'));}
 function speak(){speechSynthesis.speak(new SpeechSynthesisUtterance(last));}
 </script>
 </body>
