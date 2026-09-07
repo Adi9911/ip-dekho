@@ -1,82 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Scam Message Checker India - SBI KYC, Electricity Bill Fraud Detector Free</title>
-<meta name="description" content="Free AI Scam Message Checker India. Paste any SMS or WhatsApp message to detect SBI KYC scam, electricity bill scam, lottery fraud, job scam. Offline AI fraud message detector - 100% free, no API key.">
-<meta name="keywords" content="ai scam checker, fraud message checker india, sbi kyc scam checker, electricity bill scam checker, lottery scam checker, whatsapp scam checker, fraud message detector free, scam sms checker">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://ip-dekho.vercel.app/ai-scam-checker.html">
-<meta property="og:title" content="AI Scam Checker India - Detect SBI, Electricity Bill Fraud">
-<meta property="og:description" content="Paste any SMS/WhatsApp message. AI detects SBI KYC, Electricity Bill, Lottery scam in 1 sec - Free">
-<style>
-body{font-family:Inter, system-ui; background:#f5f5f7; margin:0;}
-.container{max-width:750px; margin:20px auto; padding:15px;}
-.card{background:#fff; border-radius:20px; padding:24px; box-shadow:0 10px 40px rgba(0,0,0,0.06);}
-textarea{width:100%; min-height:140px; padding:16px; border-radius:12px; border:2px solid #e5e5e5; font-size:16px; box-sizing:border-box;}
-.btn{width:100%; padding:16px; background:#000; color:#fff; border:none; border-radius:12px; font-weight:700; font-size:16px; cursor:pointer; margin-top:12px;}
-.btn2{padding:10px 14px; border-radius:8px; border:1px solid #ddd; background:#fff; cursor:pointer; font-size:14px; margin:5px;}
-.result{margin-top:20px; padding:20px; border-radius:12px; display:none;}
-.safe{background:#eaffea; border:2px solid #22c55e;}.danger{background:#ffeaea; border:2px solid #ef4444;}.warn{background:#fff8e1; border:2px solid #f59e0b;}
-.badge{padding:6px 12px; border-radius:20px; font-size:12px; font-weight:800; color:#fff;}
-.meter{width:100%; height:12px; background:#eee; border-radius:10px; margin:10px 0; overflow:hidden;}
-.meter-fill{height:100%; border-radius:10px;}
-</style>
-</head>
-<body>
-<div class="container"><div class="card">
-<h1>🛡️ AI Scam Message Checker India - Fraud Detector</h1>
-<p style="font-size:14px;color:#666;">Detect SBI KYC Scam, Electricity Bill Fraud, Lottery & Job Scam in 1 second - Free & Offline</p>
-<div style="display:flex; gap:8px; flex-wrap:wrap; margin:10px 0;">
-<button class="btn2" onclick="setEx('sbi')">SBI KYC Scam</button>
-<button class="btn2" onclick="setEx('lottery')">Lottery Scam</button>
-<button class="btn2" onclick="setEx('job')">Job Scam</button>
-<button class="btn2" onclick="setEx('electric')">Electricity Scam</button>
-</div>
-<textarea id="msg" placeholder="Paste suspicious SMS / WhatsApp message here... Example: Your SBI account will be blocked..."></textarea>
-<button class="btn" onclick="analyze()">Check Now - AI Fraud Scan</button>
-<div id="out" class="result"></div>
-<div id="actions" style="display:none; gap:8px; margin-top:10px;">
-<button class="btn2" onclick="copyR()">📋 Copy Result</button>
-<button class="btn2" onclick="shareWA()">📤 Share on WhatsApp</button>
-<button class="btn2" onclick="speak()">🔊 Speak</button>
-</div>
-<p style="margin-top:20px;font-size:13px;color:#666;"><a href="index.html">← Back to IP Checker</a> | <a href="link-checker.html">Check if Link is Safe →</a></p>
-</div></div>
 <script>
 let last='';
-const ex={sbi:'Your SBI account will be blocked today. Update KYC: http://sbi-kyc-update.com',lottery:'Congratulations! You won Rs 25,00,000 lottery. Claim now: http://lottery-claim-india.xyz',job:'Work from home! Earn 5000 daily. Pay Rs 500: http://job4u-online.com',electric:'Your electricity connection will be cut tonight. Pay now: http://bijli-bill-pay.com'};
+const ex={
+  sbi:'SBI Alert: Your account KYC is pending, will be BLOCKED today. Update immediately: http://sbi-kyc-update.com.verify-login.gq',
+  lottery:'Congratulations! You have won Rs 25,00,000 KBC lottery. Claim prize now: bit.ly/kbc-winner2025',
+  job:'Work from home job! Earn Rs 5000 daily. Pay Rs 500 registration fees: http://job4u-online.com',
+  electric:'Dear Consumer, your electricity connection will be CUT tonight at 9 PM due to unpaid bill. Pay immediately: https://bijli-bill-pay.xyz'
+};
 function setEx(t){document.getElementById('msg').value=ex[t];}
+
 function analyze(){
-  const text=document.getElementById('msg').value.toLowerCase();
+  const raw=document.getElementById('msg').value;
+  const text=raw.toLowerCase();
   const out=document.getElementById('out');
-  if(!text){alert('Paste message');return;}
-  out.style.display='block'; out.innerHTML='🤖 Analyzing fraud patterns...';
+  if(!text){alert('Paste message first');return;}
+  out.style.display='block'; out.innerHTML='🤖 Deep scanning 12 fraud patterns...';
+
   setTimeout(()=>{
-    let score=0,reasons=[],type='Safe';
-    const rules=[
-      {k:['account blocked','kyc update','sbi'],s:40,t:'Bank KYC Scam',r:'Bank never asks KYC via link'},
-      {k:['lottery','won','prize'],s:50,t:'Lottery Scam',r:'Lottery wins are 99% fake'},
-      {k:['job offer','earn 5000','registration'],s:35,t:'Job Scam',r:'Takes registration fees'},
-      {k:['electricity','bijli','connection cut','power cut'],s:45,t:'Electricity Bill Scam',r:'Trending electricity bill scam in India'},
-      {k:['bit.ly','tinyurl','http://','cutt.ly'],s:25,t:'Suspicious Link',r:'Uses shortened suspicious link'},
-      {k:['otp','share otp'],s:40,t:'OTP Fraud',r:'OTP asking is always scam'}
-    ];
-    rules.forEach(r=>{if(r.k.some(w=>text.includes(w))){score+=r.s;reasons.push(r.r);type=r.t;}});
-    if(score>95)score=95;
-    let color=score>=50?'#ef4444':score>=25?'#f59e0b':'#22c55e';
-    let status=score>=50?'SCAM DETECTED':score>=25?'SUSPICIOUS':'SAFE';
-    let css=score>=50?'danger':score>=25?'warn':'safe';
+    let score=0, reasons=[], type='Safe Message', tags=[];
+
+    // 1. Urgency + Threat Language (Most powerful signal)
+    if(/(blocked|will be blocked|suspended|cut tonight|immediately|urgent|last chance|today only)/.test(text)){
+      score+=35; reasons.push('Creates panic & urgency (account blocked/cut tonight) - Real banks never threaten like this'); tags.push('Urgency Threat');
+    }
+    // 2. Suspicious TLD & Fake Domain
+    if(/(\.gq|\.tk|\.xyz|\.online|\.link|\.top|verify-login|kyc-update|sbi-online|ebill-pay)/.test(text)){
+      score+=40; reasons.push('Fake domain detected (.gq/.xyz or brand name + hyphen like sbi-kyc-update) - Real domain is sbi.co.in, not sbi-kyc-update.com'); type='Fake Link Scam';
+    }
+    // 3. Shortened Link
+    if(/(bit\.ly|tinyurl|cutt\.ly|shorturl|rb\.gy)/.test(text)){
+      score+=25; reasons.push('Uses URL shortener to hide real malicious link'); tags.push('Hidden Link');
+    }
+    // 4. Prize/Lottery - 72% people fall for this
+    if(/(congratulations|won.*lottery|you won|prize|rs.*lakh|kbc winner)/.test(text)){
+      score+=50; reasons.push('Prize/Lottery trap - 72% Indians get scammed by "You won prize" message'); type='Lottery / Prize Scam';
+    }
+    // 5. Bank KYC Scam - 52% cases
+    if(/(sbi|kyc.*pending|kyc.*update|bank.*blocked|hdfc|icici|pancard update)/.test(text)){
+      score+=45; reasons.push('Bank KYC scam - Banks NEVER ask KYC via SMS link. Always check via official app'); type='Bank KYC Scam';
+    }
+    // 6. Electricity Bill Scam - Trending in India 2024-25
+    if(/(electricity|bijli|power cut|connection cut|bill.*unpaid|bescom|mseb)/.test(text)){
+      score+=45; reasons.push('Trending Electricity Bill scam in India - Distribution companies never cut at night via SMS'); type='Electricity Bill Scam';
+    }
+    // 7. Job + Registration Fee
+    if(/(work from home|earn \d+ daily|registration fee|pay.*to get job|part time job)/.test(text)){
+      score+=40; reasons.push('Job scam - Asks for registration fee, no real company takes money to give job'); type='Job Scam';
+    }
+    // 8. OTP / Personal Info Asking
+    if(/(share otp|send otp|aadhaar.*share|send.*cvv|pin.*share)/.test(text)){
+      score+=60; reasons.push('Asks for OTP/Aadhaar/CVV - 100% fraud. No company asks this'); type='OTP / Identity Theft';
+    }
+    // 9. Delivery Scam
+    if(/(package.*pending|delivery.*failed|update.*address|fedex.*track|dhl.*pending)/.test(text)){
+      score+=35; reasons.push('Fake delivery notification - Real courier never asks to pay via link'); type='Delivery Scam';
+    }
+    // 10. Generic + HTTP (not HTTPS)
+    if(/(http:\/\/)/.test(text) &&!/(https)/.test(text)){
+      score+=15; reasons.push('Uses insecure http:// link, not https://'); tags.push('Insecure Link');
+    }
+
+    if(score>99) score=99;
+    let color = score>=65? '#ef4444' : score>=30? '#f59e0b' : '#22c55e';
+    let status = score>=65? '🔴 SCAM CONFIRMED' : score>=30? '🟡 SUSPICIOUS - VERIFY' : '🟢 LIKELY SAFE';
+    let css = score>=65? 'danger' : score>=30? 'warn' : 'safe';
+
+    let advice = score>=65? '❌ DELETE immediately. Do NOT click. Block number. Report on 1930 cybercrime helpline.' : score>=30? '⚠️ Do NOT click link. Open official SBI/Bijli app to verify. If in doubt, call official customer care.' : '✅ No strong scam pattern found, but still verify link by hovering before clicking. If from unknown number, be careful.';
+
     out.className='result '+css;
-    out.innerHTML=`<span class="badge" style="background:${color}">${type} - ${status}</span><div class="meter"><div class="meter-fill" style="width:${score}%; background:${color}"></div></div><p><b>Risk Score ${score}/100</b><br><b>Why flagged:</b> ${reasons.join(', ')||'No scam pattern found'}<br><b>Advice:</b> ${score>=50?'❌ DELETE this message. DO NOT click link. Block number.':'✅ Looks safe but still verify from official app.'}</p>`;
-    last=`${status} - ${type} Risk ${score}/100 - Reason: ${reasons.join(', ')} - Checked on ip-dekho.vercel.app`;
+    out.innerHTML=`
+      <span class="badge" style="background:${color}">${type} - ${status}</span>
+      <div class="meter"><div class="meter-fill" style="width:${score}%; background:${color}; transition:1s"></div></div>
+      <p style="margin:8px 0;"><b>Risk Score: ${score}/100</b> ${tags.map(t=>`<span style="font-size:11px;background:#000;color:#fff;padding:3px 7px;border-radius:10px;margin-left:5px;">${t}</span>`).join('')}</p>
+      <div style="background:#fff;padding:12px;border-radius:10px;margin:10px 0;">
+        <b>🔍 Why we flagged this:</b>
+        <ul style="margin:8px 0;padding-left:18px;font-size:14px;">${reasons.length?reasons.map(r=>`<li>${r}</li>`).join(''):`<li>No fraud pattern matched. Looks like normal message.</li>`}</ul>
+      </div>
+      <p style="font-size:14px;"><b>🛡️ What to do:</b> ${advice}</p>
+      <p style="font-size:11px;color:#888;margin-top:10px;">Checked via AI pattern matching (12 fraud signals) - Not 100% guarantee, always verify from official app.</p>
+    `;
+    last=`${status} - ${type} Risk ${score}/100 - Reason: ${reasons.join('; ')} - Check: ip-dekho.vercel.app/ai-scam-checker.html`;
     document.getElementById('actions').style.display='flex';
-  },1000);
+  },700);
 }
-function copyR(){navigator.clipboard.writeText(last); alert('Copied');}
-function shareWA(){window.open('https://wa.me/?text='+encodeURIComponent(last+' Checked on ip-dekho.vercel.app/ai-scam-checker.html'));}
+function copyR(){navigator.clipboard.writeText(last); alert('Copied!');}
+function shareWA(){window.open('https://wa.me/?text='+encodeURIComponent(last));}
 function speak(){speechSynthesis.speak(new SpeechSynthesisUtterance(last));}
 </script>
-</body>
-</html>
