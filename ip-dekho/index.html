@@ -77,19 +77,19 @@
 
   <style>
     body { font-family: 'Inter', system-ui, sans-serif; }
-   .glass {
+  .glass {
       background: rgba(255,255,255,0.65);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(13,110,253,0.15);
     }
-   .glass-dark {
+  .glass-dark {
       background: rgba(17,26,46,0.85);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(255,255,255,0.08);
     }
-   .grid-bg {
+  .grid-bg {
       background-image:
         radial-gradient(circle at 20% 10%, rgba(13,110,253,0.12), transparent 40%),
         radial-gradient(circle at 80% 0%, rgba(13,110,253,0.10), transparent 35%),
@@ -98,12 +98,12 @@
       background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
     }
     /* Reveal on scroll */
-   .reveal { opacity: 0; transform: translateY(28px); transition: all 0.7s cubic-bezier(0.16,1,0.3,1); }
-   .reveal.in { opacity: 1; transform: translateY(0); }
-   .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+  .reveal { opacity: 0; transform: translateY(28px); transition: all 0.7s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
     /* Speed gauge */
-   .gauge-track { stroke: rgba(13,110,253,0.15); }
-   .gauge-fill { stroke: #0d6efd; stroke-linecap: round; transition: stroke-dashoffset 0.4s ease; }
+  .gauge-track { stroke: rgba(13,110,253,0.15); }
+  .gauge-fill { stroke: #0d6efd; stroke-linecap: round; transition: stroke-dashoffset 0.4s ease; }
   </style>
 </head>
 
@@ -123,6 +123,7 @@
         <a href="#tools" class="hover:text-primary transition">Tools</a>
         <a href="ai-scam-checker.html" class="hover:text-primary transition">AI Scam Checker</a>
         <a href="link-checker.html" class="hover:text-primary transition">Link Checker</a>
+        <a href="scam-sms-examples.html" class="hover:text-primary transition">Scam Examples</a>
         <a href="#speed" class="hover:text-primary transition">Speed Test</a>
         <a href="#article" class="hover:text-primary transition">Learn</a>
         <a href="#faq" class="hover:text-primary transition">FAQ</a>
@@ -201,11 +202,10 @@
         </div>
       </div>
     </section>
-    </section>
 
     <!-- ============ NEW: SCAM EXAMPLES BANNER - EVERGREEN ============ -->
     <section class="mx-auto max-w-6xl px-4 sm:px-6 pb-6">
-      <div class="reveal glass rounded-2xl p-5 sm:p-6 border-2 border-red-100 bg-red-50/50">
+      <div class="reveal in glass rounded-2xl p-5 sm:p-6 border-2 border-red-100 bg-red-50/50">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <div class="inline-flex items-center gap-2 rounded-full bg-red-500 px-3 py-1 text-[11px] font-bold text-white">⚠️ NEW ARTICLE</div>
@@ -219,11 +219,10 @@
       </div>
     </section>
 
-   
     <!-- ============ NEW TOOLS - SEO OPTIMIZED ============ -->
     <section class="mx-auto max-w-6xl px-4 sm:px-6 pb-10">
       <h2 class="reveal text-center text-xl sm:text-2xl font-extrabold">More Free Security Tools - AI Fraud Detector India</h2>
-      <p class="reveal mx-auto mt-1 mb-6 max-w-md text-center text-sm text-slate-500">New AI tools to protect you from online fraud - Most searched in India 2026</p>
+      <p class="reveal mx-auto mt-1 mb-6 max-w-md text-center text-sm text-slate-500">New AI tools to protect you from online fraud - Most searched in India</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <a href="ai-scam-checker.html" class="reveal glass rounded-2xl p-6 hover:shadow-glow transition border-2 border-red-100">
           <div class="flex items-center gap-3">
@@ -404,6 +403,7 @@
           <a href="#about" class="hover:text-white transition">About</a>
           <a href="ai-scam-checker.html" class="hover:text-white transition">AI Scam Checker</a>
           <a href="link-checker.html" class="hover:text-white transition">Link Checker</a>
+          <a href="scam-sms-examples.html" class="hover:text-white transition">Scam Examples</a>
           <a href="#privacy" class="hover:text-white transition">Privacy Policy</a>
           <a href="#terms" class="hover:text-white transition">Terms</a>
           <a href="#contact" class="hover:text-white transition">Contact</a>
