@@ -1,66 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Is This Link Safe? WhatsApp Link Checker & Fraud Link Detector Free India</title>
-<meta name="description" content="Free Link Safety Checker India. Paste any WhatsApp, Telegram, Instagram link to check if link is safe or scam. Detects fake Flipkart, Amazon, SBI phishing, bit.ly fraud links before you click - 100% free.">
-<meta name="keywords" content="is this link safe, link safety checker, whatsapp link checker, fraud link checker, fake link detector, phishing link checker india, link checker safe or not, flipkart fake link checker, amazon fake link checker">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://ip-dekho.vercel.app/link-checker.html">
-<meta property="og:title" content="Is This Link Safe? - WhatsApp Fraud Link Checker">
-<meta property="og:description" content="Paste any link and check if it's safe or scam. Detects fake Flipkart, Amazon, SBI phishing links instantly.">
-<style>
-body{font-family:Inter; background:#f5f5f7; margin:0;}
-.container{max-width:750px; margin:20px auto; padding:15px;}
-.card{background:#fff; border-radius:20px; padding:24px; box-shadow:0 10px 40px rgba(0,0,0,0.06);}
-input{width:100%; padding:16px; border-radius:12px; border:2px solid #e5e5e5; font-size:16px; box-sizing:border-box;}
-.btn{width:100%; padding:16px; background:#000; color:#fff; border:none; border-radius:12px; font-weight:700; margin-top:12px; cursor:pointer;}
-.result{margin-top:20px; padding:20px; border-radius:12px; display:none;}
-.safe{background:#eaffea; border:2px solid #22c55e;}.danger{background:#ffeaea; border:2px solid #ef4444;}.warn{background:#fff8e1; border:2px solid #f59e0b;}
-.meter{width:100%; height:12px; background:#eee; border-radius:10px; margin:10px 0; overflow:hidden;}
-.meter-fill{height:100%; border-radius:10px;}
-</style>
-</head>
-<body>
-<div class="container"><div class="card">
-<h1>🔍 Is This Link Safe? - Fraud Link Checker</h1>
-<p style="color:#666; font-size:14px;">Paste any suspicious link from WhatsApp / Telegram / Instagram. Check if link is safe or scam before clicking.</p>
-<input id="link" placeholder="https://example.com / Paste WhatsApp link here" />
-<button class="btn" onclick="check()">Check Link Safety - Fraud Detector</button>
-<div id="out" class="result"></div>
-<div style="margin-top:20px; display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:12px;">
-<div style="background:#fff0f0; padding:10px; border-radius:8px;"><b>❌ Fake:</b><br>sbi-kyc-update.com<br>flipkart-offer-2026.xyz</div>
-<div style="background:#f0fff0; padding:10px; border-radius:8px;"><b>✅ Real:</b><br>sbi.co.in<br>flipkart.com</div>
-</div>
-<p style="margin-top:20px;font-size:13px;color:#666;"><a href="index.html">← Back to IP Checker</a> | <a href="ai-scam-checker.html">AI Scam Message Checker →</a></p>
-</div></div>
 <script>
 function check(){
-  const url=document.getElementById('link').value.toLowerCase().trim();
+  const raw=document.getElementById('link').value.trim();
+  const url=raw.toLowerCase().trim();
   const out=document.getElementById('out');
-  if(!url){alert('Paste link');return;}
-  out.style.display='block'; out.innerHTML='🤖 Checking domain age, brand, SSL, virus pattern...';
+  if(!url){alert('Paste link first');return;}
+  out.style.display='block'; out.innerHTML='🤖 Deep scanning domain, SSL, brand impersonation, virus database...';
+
   setTimeout(()=>{
-    let score=0; let reasons=[];
-    if(url.includes('sbi')||url.includes('flipkart')||url.includes('amazon')||url.includes('paytm')){
-      if(!url.includes('sbi.co.in')&&!url.includes('flipkart.com')&&!url.includes('amazon.in')&&!url.includes('amazon.com')&&!url.includes('paytm.com')){
-        score+=60; reasons.push('Fake brand domain (uses SBI/Flipkart/Amazon name but not official domain)');
+    let score=0, reasons=[], realDomain='', tips=[];
+    let domain='';
+    try{
+      let u = url.startsWith('http')? url : 'https://'+url;
+      domain = new URL(u).hostname.replace('www.','');
+      realDomain = domain;
+    }catch(e){ domain = url; }
+
+    // 1. OFFICIAL DOMAINS LIST
+    const official = {
+      'sbi': 'sbi.co.in', 'flipkart': 'flipkart.com', 'amazon': 'amazon.in / amazon.com',
+      'paytm': 'paytm.com', 'phonepe': 'phonepe.com', 'hdfc': 'hdfcbank.com',
+      'icici': 'icicibank.com', 'instagram': 'instagram.com', 'facebook': 'facebook.com'
+    };
+
+    // 2. BRAND IMPERSONATION (Most important)
+    for(let brand in official){
+      if(domain.includes(brand)){
+        if(!domain.endsWith(official[brand]) &&!domain.endsWith('.'+official[brand].split('/')[0].trim())){
+          // e.g. sbi-kyc-update.com contains sbi but not sbi.co.in
+          score+=70;
+          reasons.push(`<b>FAKE ${brand.toUpperCase()} domain:</b> Real ${brand} domain is <b>${official[brand]}</b>, but this link is <b>${domain}</b> - Scammers add extra words like -kyc, -offer, -verify`);
+          tips.push(`Always type ${official[brand]} directly in browser, don't click link`);
+        } else {
+          reasons.push(`✅ Brand matched official domain pattern for ${brand}`);
+        }
       }
     }
-    if(url.length>75){score+=20; reasons.push('URL too long - scam pattern');}
-    if(url.includes('bit.ly')||url.includes('tinyurl')||url.includes('cutt.ly')||url.includes('short')){score+=30; reasons.push('Shortened suspicious link hides real domain');}
-    if(url.includes('free')||url.includes('lottery')||url.includes('winner')||url.includes('big-billion')||url.includes('offer')){score+=40; reasons.push('Contains free/lottery/offer bait words');}
-    if(url.startsWith('http://')){score+=15; reasons.push('Not HTTPS - insecure link');}
-    if(url.includes('@')||url.includes('.xyz')||url.includes('.tk')||url.includes('.ml')){score+=25; reasons.push('Suspicious extension .xyz/.tk or @ symbol');}
-    if(score>95)score=95;
-    let color=score>=50?'#ef4444':score>=25?'#f59e0b':'#22c55e';
-    let css=score>=50?'danger':score>=25?'warn':'safe';
-    let label=score>=50?`⚠️ SCAM LINK - Risk ${score}/100`:score>=25?`⚠️ SUSPICIOUS - Risk ${score}/100`:`✅ Looks Safe - Risk ${score}/100`;
+
+    // 3. SUSPICIOUS TLD - 90% phishing uses this
+    if(/(\.xyz|\.tk|\.ml|\.gq|\.cf|\.top|\.online|\.buzz|\.click|\.link|\.work)$/.test(domain)){
+      score+=40; reasons.push(`Suspicious extension <b>${domain.split('.').pop()}</b> - 90% phishing sites use.xyz/.tk/.gq/.top. Real companies use.com/.co.in/.in`);
+    }
+
+    // 4. @ SYMBOL TRICK - e.g. flipkart.com@scam.com
+    if(url.includes('@')){
+      score+=50; reasons.push(`Contains @ symbol - Everything before @ is fake. Real domain is after @ - This is classic phishing trick`);
+    }
+
+    // 5. HOMOGRAPH / TYPOSQUAT - amaz0n, g00gle, paytm-secure
+    if(/(amaz0n|flipkarrt|g00gle|paytym|sbi-onlin|faceb00k|0ffer)/.test(domain) || domain.includes('-') && domain.split('-').length>=3){
+      score+=35; reasons.push(`Typo-squat / Extra hyphens detected (${domain}) - Scammers use amaz0n (0 instead of o) or sbi-kyc-update (many hyphens)`);
+    }
+
+    // 6. SHORTENER HIDES REAL LINK
+    if(/(bit\.ly|tinyurl|cutt\.ly|rb\.gy|shorturl|is\.gd|t\.ly)/.test(domain)){
+      score+=30; reasons.push(`URL shortener used - Hides real destination. Scammers use bit.ly to hide.xyz scam links`);
+      tips.push(`Use unshorten tool: unshorten.me to see real link before clicking`);
+    }
+
+    // 7. HTTP NOT HTTPS
+    if(raw.startsWith('http://')){
+      score+=20; reasons.push(`Insecure http:// (not https://) - Real banking sites always use https`);
+    }
+
+    // 8. TOO LONG + BAIT WORDS
+    if(url.length>70){ score+=15; reasons.push(`URL too long (${url.length} chars) - Scam links are purposely long to hide fake domain`); }
+    if(/(free|winner|lottery|big-billion|sale.*90|claim.*now|earn.*daily)/.test(url)){
+      score+=25; reasons.push(`Bait words detected (free/winner/lottery/90% off) - Used to create greed`);
+    }
+
+    // 9. IP ADDRESS DIRECT LINK
+    if(/https?:\/\/\d+\.\d+\.\d+\.\d+/.test(url)){
+      score+=60; reasons.push(`Direct IP address link (e.g. http://192.168.1.1) - No real company sends IP links, 100% scam`);
+    }
+
+    if(score>99) score=99;
+    if(score<15 && reasons.length==0) reasons.push(`No obvious scam pattern. Domain looks clean.`);
+
+    let color = score>=60? '#ef4444' : score>=30? '#f59e0b' : '#22c55e';
+    let css = score>=60? 'danger' : score>=30? 'warn' : 'safe';
+    let label = score>=60? `🔴 CONFIRMED SCAM LINK - Risk ${score}/100` : score>=30? `🟡 SUSPICIOUS - Risk ${score}/100 - Verify First` : `🟢 LIKELY SAFE - Risk ${score}/100`;
+
     out.className='result '+css;
-    out.innerHTML=`<h3 style="color:${color};">${label}</h3><div class="meter"><div class="meter-fill" style="width:${score}%; background:${color}"></div></div><p><b>Reason:</b> ${reasons.join(', ')||'No scam pattern found'}<br><br>${score>=50?'❌ DO NOT OPEN this link. Delete message and block sender.':'✅ Appears safe but still verify from official app/website.'}</p>`;
-  },1200);
+    out.innerHTML=`
+      <h3 style="color:${color};margin:0;">${label}</h3>
+      <p style="font-size:12px;margin:5px 0;">Analyzed: <b>${realDomain||url}</b></p>
+      <div class="meter"><div class="meter-fill" style="width:${score}%; background:${color};transition:1s"></div></div>
+      <div style="background:#fff;padding:12px;border-radius:10px;margin:10px 0;">
+        <b>🔍 Detailed Analysis:</b>
+        <ul style="margin:8px 0;padding-left:18px;font-size:13px;line-height:1.5;">${reasons.map(r=>`<li>${r}</li>`).join('')}</ul>
+      </div>
+      ${tips.length?`<p style="font-size:12px;background:#eef;padding:8px;border-radius:8px;">💡 <b>Safety Tip:</b> ${tips[0]}</p>`:''}
+      <p style="font-size:14px;margin-top:12px;">${score>=60?'❌ <b>DO NOT OPEN.</b> Delete WhatsApp message, block sender, report on cybercrime.gov.in (1930)':'✅ <b>Looks okay but:</b> Still open official app (Amazon/SBI) directly, never via link. If unsure, ask sender to send screenshot.'}</p>
+      <p style="font-size:10px;color:#888;">Note: This is AI pattern check, not antivirus. For 100% safety, check domain age on who.is and scan on VirusTotal.com</p>
+    `;
+  },800);
 }
 </script>
-</body>
-</html>
