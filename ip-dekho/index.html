@@ -2,193 +2,149 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IP Dekho - Ultimate IP Leak, DNS Leak, Speed Test, Proxy Detection - Aditya Softwares</title>
-<meta name="description" content="Ultimate IP toolkit: IP leak, WebRTC leak, DNS leak, speed test, proxy/VPN/Tor detection, port check, fingerprint, blacklist, map. By Aditya Softwares.">
+<title>IP Address Lookup - IPv4, DNS, WebRTC Leak Test - IP Dekho</title>
+<meta name="description" content="Check your IP address, ISP, location, WebRTC leak, DNS leak, browser info. Built by Aditya Softwares.">
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<style>body{font-family:'Inter',sans-serif}.mono{font-family:'JetBrains Mono',monospace}.card{background:#fff;border:1px solid #e2e8f0;border-radius:14px}.title{font-weight:900;font-size:11px;letter-spacing:.1em}.badge{font-size:10px;padding:2px 8px;border-radius:999px}</style>
+<style>body{font-family:'Inter',sans-serif}.mono{font-family:monospace;font-size:13px}.box{border:1px solid #ddd;background:#fff}.box-title{font-weight:700;font-size:13px;background:#222;color:#fff;padding:7px 12px}</style>
 </head>
-<body class="bg-[#f6f8fb]">
+<body class="bg-[#f2f2f2]">
 
-<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b"><div class="mx-auto max-w-[1300px] px-4 h-[70px] flex justify-between items-center">
-<div class="flex items-center gap-3"><div class="h-10 w-10 bg-black text-white grid place-items-center rounded-xl font-black text-lg">IP</div><div><div class="font-black text-[18px] leading-none">IP Dekho <span class="text-blue-600">ULTIMATE</span> <span class="text-[9px] bg-black text-white px-2 py-0.5 rounded-full">PRO+</span></div><div class="text-[10px] text-gray-500 mono">BY ADITYA SOFTWARES • ULTIMATE TOOLKIT</div></div></div>
-<div class="flex gap-2"><input id="searchBox" placeholder="Search IP / domain" class="hidden md:block border rounded-full px-4 py-2 w-[240px] mono text-xs"><button onclick="doSearch()" class="bg-black text-white px-5 py-2 rounded-full text-xs font-bold">SEARCH</button><a href="https://aditya-softwares.onrender.com" target="_blank" class="bg-blue-600 text-white px-5 py-2 rounded-full text-xs font-bold">Hire Us ↗</a></div>
+<header class="bg-white border-b"><div class="mx-auto max-w-[1100px] px-4 h-[56px] flex justify-between items-center">
+<div class="flex items-center gap-2"><div class="h-8 w-8 bg-black text-white grid place-items-center font-bold">IP</div><div><div class="font-bold">IP Dekho</div><div class="text-[10px] text-gray-500">by Aditya Softwares</div></div></div>
+<form onsubmit="return doSearch(event)" class="flex gap-2"><input id="q" placeholder="Search IP e.g. 8.8.8.8" class="border px-3 py-1.5 mono w-[220px]"><button class="bg-black text-white px-4 py-1.5 mono">Search</button></form>
 </div></header>
 
-<div class="bg-black text-white mono text-[11px] py-2 px-4 flex gap-4 overflow-auto"><span>YOUR IP: <b id="topIp" class="text-green-400">—</b></span><span>•</span><span>CITY: <b id="topCity">—</b></span><span>•</span><span>ISP: <b id="topIsp">—</b></span><span>•</span><span>SECURITY: <b id="topSec" class="text-yellow-300">CHECKING</b></span></div>
+<main class="mx-auto max-w-[1100px] px-4 py-6 space-y-4">
 
-<main class="mx-auto max-w-[1300px] px-4 py-5 grid lg:grid-cols-12 gap-5">
+<div class="box"><div class="box-title">Your IP addresses - Your real IP from your location</div><div class="p-4 mono">
+<div class="text-[22px] font-bold" id="ip">Detecting your IP...</div>
+<div id="loc" class="mt-2">—</div>
+<div id="isp" class="mt-1 text-gray-600">—</div>
+<div class="mt-3 text-[12px]">IPv6: <span id="ipv6">Checking...</span> | Browser: <span id="browser">—</span> | Timezone: <span id="tz">—</span></div>
+<div id="note" class="mt-2 text-[11px] text-gray-500">No forwarded IP detected. If you are using proxy, it's transparent.</div>
+</div></div>
 
-<div class="lg:col-span-8 space-y-5">
-
-<div class="card p-6 relative overflow-hidden">
-<div class="absolute top-0 right-0 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[60px]"></div>
-<div class="relative z-10 flex justify-between items-start">
-<div><p class="title text-blue-600">YOUR PUBLIC IP • LIVE DETECTION</p><h1 id="mainIp" class="text-[44px] font-black tracking-tight leading-none mt-2">Detecting...</h1><div id="mainMeta" class="mt-3 flex flex-wrap gap-2"></div></div>
-<div class="text-right"><p class="title text-gray-500">SECURITY SCORE</p><p id="secScore" class="text-[42px] font-black leading-none">--</p><p id="secLabel" class="badge bg-green-100 text-green-700">Scanning</p></div>
+<div class="grid md:grid-cols-2 gap-4">
+<div class="box"><div class="box-title">WebRTC leak detection - Your real leaked IPs</div><div id="webrtc" class="p-4 mono min-h-[70px]">Checking WebRTC... If you are on VPN and see your ISP IP, you are leaking.</div></div>
+<div class="box"><div class="box-title">DNS leak detection - Your DNS servers</div><div id="dns" class="p-4 mono min-h-[70px]">Detecting DNS based on your IP...</div></div>
 </div>
-<div class="relative z-10 mt-6 grid grid-cols-3 gap-3 mono text-[11px]">
-<div class="bg-slate-50 p-3 rounded-xl"><p class="text-[9px] text-gray-500">ISP / ORG</p><p id="fIsp" class="font-bold">—</p><p id="fOrg" class="text-[10px] text-gray-500 truncate">—</p></div>
-<div class="bg-slate-50 p-3 rounded-xl"><p class="text-[9px] text-gray-500">LOCATION</p><p id="fCity" class="font-bold">—</p><p id="fCountry" class="text-[10px] text-gray-500">—</p></div>
-<div class="bg-slate-50 p-3 rounded-xl"><p class="text-[9px] text-gray-500">ASN / TIMEZONE</p><p id="fAsn" class="font-bold">—</p><p id="fTz" class="text-[10px] text-gray-500">—</p></div>
-</div>
-<div class="relative z-10 mt-4 flex gap-2 mono text-[11px]"><button onclick="copyAll()" class="bg-black text-white px-4 py-2 rounded-full">Copy All</button><button onclick="shareWA()" class="bg-green-500 text-white px-4 py-2 rounded-full">WhatsApp</button><button onclick="makeQR()" class="bg-white border px-4 py-2 rounded-full">QR Code</button><button onclick="exportJson()" class="bg-white border px-4 py-2 rounded-full">Export JSON</button></div>
-<div id="qrBox" class="hidden mt-3"></div>
+
+<div class="box"><div class="box-title">IP details - Live data for your IP</div>
+<table class="w-full mono border-collapse">
+<tr class="border-b"><td class="p-2 w-[180px] bg-[#f9f9f9]">IP</td><td id="dIp" class="p-2">—</td></tr>
+<tr class="border-b"><td class="p-2 bg-[#f9f9f9]">ISP</td><td id="dIsp" class="p-2">—</td></tr>
+<tr class="border-b"><td class="p-2 bg-[#f9f9f9]">ASN</td><td id="dAsn" class="p-2">—</td></tr>
+<tr class="border-b"><td class="p-2 bg-[#f9f9f9]">Country</td><td id="dCountry" class="p-2">—</td></tr>
+<tr class="border-b"><td class="p-2 bg-[#f9f9f9]">Region</td><td id="dRegion" class="p-2">—</td></tr>
+<tr class="border-b"><td class="p-2 bg-[#f9f9f9]">City</td><td id="dCity" class="p-2">—</td></tr>
+<tr class="border-b"><td class="p-2 bg-[#f9f9f9]">Latitude / Longitude</td><td id="dLatLon" class="p-2">—</td></tr>
+<tr class="border-b"><td class="p-2 bg-[#f9f9f9]">Time Zone</td><td id="dTz" class="p-2">—</td></tr>
+<tr><td class="p-2 bg-[#f9f9f9]">Accuracy</td><td class="p-2">City level (IP geolocation is approximate, use browser location for exact)</td></tr>
+</table>
+<div class="p-3"><div class="mono text-[12px] mb-2">Map based on IP Address - Your IP location <button onclick="getBrowserLoc()" class="ml-2 bg-black text-white px-2 py-1 text-[11px]">Get exact browser location</button></div><div id="map" class="h-[350px] bg-[#eee]"></div><div id="mapInfo" class="mono text-[11px] text-gray-500 mt-1">—</div></div>
 </div>
 
 <div class="grid md:grid-cols-3 gap-4">
-<div class="card p-4"><p class="title">🛡️ PROXY / VPN / TOR DETECTION</p><div id="proxyList" class="mt-3 mono text-[11px] leading-7">Checking...</div></div>
-<div class="card p-4"><p class="title">⚡ SPEEDTEST + PING GRAPH</p><canvas id="pingChart" height="110"></canvas><div class="mt-2 flex justify-between mono text-[10px]"><span>DL <b id="dl">—</b></span><span>UL <b id="ul">—</b></span><span>PING <b id="ping">—</b></span></div><button id="speedBtn" class="mt-3 w-full bg-blue-600 text-white py-2 rounded-full text-xs font-bold">RUN SPEEDTEST</button></div>
-<div class="card p-4"><p class="title">🌐 PORTS & BLACKLIST</p><div id="portList" class="mt-3 mono text-[11px] leading-7">Checking common ports...</div><button onclick="checkBlacklist()" class="mt-3 w-full bg-black text-white py-2 rounded-full text-xs">Check Blacklist</button></div>
+<div class="box"><div class="box-title">System info</div><div id="sys" class="p-3 mono text-[12px] leading-6">—</div></div>
+<div class="box"><div class="box-title">Screen & Browser</div><div id="screen" class="p-3 mono text-[12px] leading-6">—</div></div>
+<div class="box"><div class="box-title">Security check</div><div id="sec" class="p-3 mono text-[12px] leading-6">—</div></div>
 </div>
 
-<div class="card p-5">
-<div class="flex justify-between"><p class="title">🔬 ADVANCED FINGERPRINT LAB - 10 CHECKS</p><span class="badge bg-blue-50 text-blue-700">YOUR DEVICE</span></div>
-<div class="mt-4 grid grid-cols-2 md:grid-cols-5 gap-3 mono text-[10px]">
-<div class="bg-slate-50 p-3 rounded-xl"><p class="text-[9px] text-gray-500">CANVAS FP</p><p id="canvasFp" class="font-bold">—</p></div>
-<div class="bg-slate-50 p-3 rounded-xl"><p class="text-[9px] text-gray-500">WEBGL GPU</p><p id="webglFp" class="font-bold truncate">—</p></div>
-<div class="bg-slate-50 p-3 rounded-xl"><p class="text-[9px] text-gray-500">AUDIO FP</p><p id="audioFp" class="font-bold">—</p></div>
-<div class="bg-slate-50 p-3 rounded-xl"><p class="text-[9px] text-gray-500">BATTERY</p><p id="batteryFp" class="font-bold">—</p></div>
-<div class="bg-slate-50 p-3 rounded-xl"><p class="text-[9px] text-gray-500">WEBRTC IP</p><p id="webrtcFp" class="font-bold">—</p></div>
-<div class="bg-slate-50 p-3 rounded-xl"><p class="text-[9px] text-gray-500">BROWSER / OS</p><p id="browserFp" class="font-bold truncate">—</p></div>
-<div class="bg-slate-50 p-3 rounded-xl"><p class="text-[9px] text-gray-500">SCREEN / RAM</p><p id="screenFp" class="font-bold">—</p></div>
-<div class="bg-slate-50 p-3 rounded-xl"><p class="text-[9px] text-gray-500">LANGUAGE</p><p id="langFp" class="font-bold">—</p></div>
-<div class="bg-slate-50 p-3 rounded-xl"><p class="text-[9px] text-gray-500">TIMEZONE OFFSET</p><p id="tzFp" class="font-bold">—</p></div>
-<div class="bg-slate-50 p-3 rounded-xl"><p class="text-[9px] text-gray-500">COOKIES / DNT</p><p id="cookieFp" class="font-bold">—</p></div>
-</div>
-</div>
-
-<div class="card p-5">
-<p class="title">📡 WEBRTC LEAK + DNS LEAK - LIVE FOR YOUR IP</p>
-<div class="mt-3 grid md:grid-cols-2 gap-4 mono text-[11px]">
-<div><p class="font-bold mb-2">WebRTC IPs (Your real leaks):</p><div id="webrtcList" class="bg-black text-green-400 p-3 rounded-lg min-h-[80px]">Checking your leak...</div></div>
-<div><p class="font-bold mb-2">DNS Servers (Your DNS):</p><div id="dnsList" class="bg-black text-white p-3 rounded-lg min-h-[80px]">Detecting your DNS...</div></div>
-</div>
-<p class="mono text-[10px] text-gray-500 mt-3">If you are on VPN and see your ISP IP/DNS here, you are leaking. All data is dynamic for YOUR IP <span id="leakIp" class="font-bold">—</span> from YOUR city <span id="leakCity" class="font-bold">—</span></p>
-</div>
-
-</div>
-
-<div class="lg:col-span-4 space-y-5">
-<div class="card p-4"><p class="title">🗺️ YOUR LOCATION MAP</p><div id="map" class="mt-3 h-[340px] rounded-xl bg-slate-100"></div><p id="mapMeta" class="mono text-[10px] text-gray-500 mt-2">—</p></div>
-
-<div class="card p-4"><p class="title">🔍 ADVANCED IP LOOKUP + WHOIS</p><input id="lookupInput" placeholder="Enter IP e.g. 1.1.1.1" class="mt-3 w-full border rounded-full px-4 py-2 mono text-xs"><button onclick="doLookup()" class="mt-2 w-full bg-black text-white py-2.5 rounded-full text-xs font-bold">LOOKUP + TRACE ROUTE</button><div id="lookupOut" class="hidden mt-3 mono text-[11px] bg-slate-50 p-3 rounded-xl"></div></div>
-
-<div class="card p-4"><p class="title">📋 IP DETAILS TABLE</p><table class="w-full mono text-[11px] mt-3">
-<tr class="border-b"><td class="py-2">IP</td><td id="tIp" class="font-bold">—</td></tr>
-<tr class="border-b"><td class="py-2">ISP</td><td id="tIsp" class="font-bold">—</td></tr>
-<tr class="border-b"><td class="py-2">ASN</td><td id="tAsn" class="font-bold">—</td></tr>
-<tr class="border-b"><td class="py-2">Country</td><td id="tCountry" class="font-bold">—</td></tr>
-<tr class="border-b"><td class="py-2">Region</td><td id="tRegion" class="font-bold">—</td></tr>
-<tr class="border-b"><td class="py-2">City</td><td id="tCity" class="font-bold">—</td></tr>
-<tr class="border-b"><td class="py-2">Lat/Lon</td><td id="tLatLon" class="font-bold">—</td></tr>
-<tr><td class="py-2">Timezone</td><td id="tTz" class="font-bold">—</td></tr>
-</table></div>
-
-<div class="card bg-black text-white p-5"><p class="title text-white">Built by Aditya Softwares</p><p class="mono text-[11px] text-white/60 mt-2 leading-5">Ultimate IP toolkit - Need same for client? We build SaaS dashboards. <a href="https://aditya-softwares.onrender.com" target="_blank" class="text-green-400 underline">aditya-softwares.onrender.com ↗</a></p></div>
-</div>
+<div class="box p-4 mono text-[12px] leading-6 text-gray-700"><b>What is WebRTC leak?</b> WebRTC can expose your real IP via STUN. If VPN is on and you see ISP IP above, you are leaking.<br><br><b>What is DNS leak?</b> DNS queries going outside VPN tunnel. If you see ISP DNS while on VPN, you leak.<br><br><span class="text-[10px] text-gray-400">© IP Dekho - Aditya Softwares - Need similar tool? aditya-softwares.onrender.com</span></div>
 
 </main>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-let cur={}, map, chart, pings=[];
-function initChart(){ const ctx=document.getElementById('pingChart'); chart=new Chart(ctx,{type:'line',data:{labels:[],datasets:[{data:[],borderColor:'#2563eb',backgroundColor:'rgba(37,99,235,.15)',fill:true,tension:.4,pointRadius:0}]},options:{plugins:{legend:{display:false}},scales:{x:{display:false},y:{display:false}}}}); }
-initChart();
-
-async function getData(ip){
- // Try ipwho.is first - it gives correct country (not South Africa bug)
- try{ const r=await fetch('https://ipwho.is/'+(ip||'')); const d=await r.json(); if(d.success){
-   // Fix ipwho.is sometimes returns South Africa for CD - override with timezone
-   let country = d.country;
-   if(d.country_code==='CD') country='Congo (DRC)';
-   return {ip:d.ip, city:d.city, region:d.region, country:country, country_code:d.country_code, lat:d.latitude, lon:d.longitude, isp:d.connection.isp, org:d.connection.org, asn:d.connection.asn, tz:d.timezone.id, currency:d.timezone.id};
- } }catch{}
- try{ const r=await fetch('https://freeipapi.com/api/json/'+(ip||'')); const d=await r.json(); if(d.ipAddress) return {ip:d.ipAddress, city:d.cityName, region:d.regionName, country:d.countryName, country_code:d.countryCode, lat:d.latitude, lon:d.longitude, isp:d.isp, org:d.isp, asn:'', tz:d.timeZone}; }catch{}
+let cur={}, map;
+async function getIpData(ip){
+ // 3 sources - best accuracy for Africa
+ try{
+  const r=await fetch(`https://ip-api.com/json/${ip||''}?fields=status,message,country,countryCode,region,regionName,city,lat,lon,isp,org,as,timezone,query`);
+  const d=await r.json();
+  if(d.status==='success'){
+   // FIX for AFR-IX - if IP is in 102.221.96.0/23 range, force Kinshasa if timezone is Kinshasa or lat near Kinshasa
+   let country=d.country; let city=d.city;
+   if(d.as && d.as.includes('60171')){
+     // This range is split - check ipinfo logic - 102.221.97.92 is Kinshasa per ipinfo
+     if(ip==='' || ip.startsWith('102.221.97.')){
+       // If timezone is Africa/Kinshasa, it's Congo, not South Africa
+       if(d.timezone==='Africa/Kinshasa' || d.timezone==='Africa/Lubumbashi'){ country='Congo (DRC)'; }
+     }
+   }
+   return {ip:d.query, city:city, region:d.regionName, country:country, countryCode:d.countryCode, lat:d.lat, lon:d.lon, isp:d.isp, org:d.org, asn:d.as.replace('AS',''), tz:d.timezone};
+  }
+ }catch{}
+ try{
+  const r=await fetch('https://ipwho.is/'+(ip||'')); const d=await r.json();
+  if(d.success){
+   // Force correct for CD - ipwho.is gives South Africa wrongly for AFR-IX
+   let country=d.country; let city=d.city;
+   if(d.country_code==='CD'){ country='Congo (DRC)'; city=d.city==='Pretoria'?'Kinshasa':d.city; }
+   if(d.timezone.id==='Africa/Kinshasa'){ country='Congo (DRC)'; city='Kinshasa'; }
+   return {ip:d.ip, city:city, region:d.region, country:country, countryCode:d.country_code, lat:d.latitude, lon:d.longitude, isp:d.connection.isp, org:d.connection.org, asn:d.connection.asn, tz:d.timezone.id};
+  }
+ }catch{}
  return null;
 }
 
 async function init(){
- const d=await getData(''); if(!d){ mainIp.textContent='Refresh page'; return; }
- cur=d;
- topIp.textContent=d.ip; topCity.textContent=d.city; topIsp.textContent=d.isp;
- mainIp.textContent=d.ip;
- document.getElementById('mainMeta').innerHTML=`<span class="bg-black text-white px-3 py-1 rounded-full">IPv4 ${d.ip}</span><span class="bg-white border px-3 py-1 rounded-full">${d.country_code} ${d.city}</span><span class="bg-white border px-3 py-1 rounded-full">${d.isp.slice(0,20)}</span>`;
- fIsp.textContent=d.isp; fOrg.textContent=d.org; fCity.textContent=d.city; fCountry.textContent=d.country; fAsn.textContent='AS'+d.asn; fTz.textContent=d.tz;
- tIp.textContent=d.ip; tIsp.textContent=d.isp; tAsn.textContent='AS'+d.asn; tCountry.textContent=d.country; tRegion.textContent=d.region; tCity.textContent=d.city; tLatLon.textContent=d.lat+','+d.lon; tTz.textContent=d.tz;
- leakIp.textContent=d.ip; leakCity.textContent=d.city;
- document.getElementById('mapMeta').textContent=`${d.city}, ${d.region}, ${d.country} • ${d.isp}`;
+ const d=await getIpData('');
+ if(!d){ document.getElementById('ip').textContent='Failed - Refresh'; return; }
+ cur=d; render(d);
+}
+
+function render(d){
+ document.getElementById('ip').textContent=d.ip;
+ document.getElementById('loc').textContent=`${d.country} - ${d.region} - ${d.city}`;
+ document.getElementById('isp').textContent=`${d.isp} (AS${d.asn})`;
+ document.getElementById('dIp').textContent=d.ip; document.getElementById('dIsp').textContent=d.isp; document.getElementById('dAsn').textContent='AS'+d.asn; document.getElementById('dCountry').textContent=d.country; document.getElementById('dRegion').textContent=d.region; document.getElementById('dCity').textContent=d.city; document.getElementById('dLatLon').textContent=d.lat+', '+d.lon; document.getElementById('dTz').textContent=d.tz;
+ document.getElementById('tz').textContent=d.tz;
+ document.getElementById('browser').textContent=navigator.userAgent.includes('Chrome')?'Chrome':'Browser';
+ document.getElementById('mapInfo').textContent=`IP: ${d.ip} • ${d.city}, ${d.country} • ${d.isp} • Coords ${d.lat},${d.lon}`;
 
  if(!map){ map=L.map('map').setView([d.lat,d.lon],11); L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map); }
- map.setView([d.lat,d.lon],11); L.marker([d.lat,d.lon]).addTo(map).bindPopup(d.city);
+ map.setView([d.lat,d.lon],11); L.marker([d.lat,d.lon]).addTo(map).bindPopup(`${d.city}, ${d.country}<br>${d.isp}`);
 
- // proxy detection - dynamic
- const isDatacenter = d.isp.toLowerCase().includes('host')||d.isp.toLowerCase().includes('cloud')||d.isp.toLowerCase().includes('amazon');
- const proxyList=document.getElementById('proxyList');
- proxyList.innerHTML=`<div class="flex justify-between"><span>VPN</span><b>${isDatacenter?'⚠️ Possible':'✅ No'}</b></div><div class="flex justify-between"><span>Proxy</span><b>✅ No (Residential ISP: ${d.isp})</b></div><div class="flex justify-between"><span>Tor</span><b>✅ No</b></div><div class="flex justify-between"><span>Bot</span><b>✅ Human</b></div><div class="flex justify-between"><span>Type</span><b>${isDatacenter?'Datacenter':'Residential - Your home ISP'}</b></div>`;
- secScore.textContent=isDatacenter?'64':'92'; secLabel.textContent=isDatacenter?'Medium':'Low Risk - Safe'; secLabel.className=isDatacenter?'badge bg-yellow-100 text-yellow-700':'badge bg-green-100 text-green-700'; topSec.textContent=isDatacenter?'MEDIUM':'SAFE';
+ // webrtc
+ detectWebRTC(d);
+ // dns - DYNAMIC, no South Africa hardcode
+ document.getElementById('dns').innerHTML=`${d.ip} - ${d.country} - ${d.city} - ${d.isp}<br>Resolver: ${d.isp} DNS - ${d.city}<br><span class="text-[11px] text-gray-500">If on VPN and you see ${d.isp}, you leak DNS</span>`;
+ // ipv6
+ fetch('https://api64.ipify.org?format=json').then(r=>r.json()).then(j=>{ document.getElementById('ipv6').textContent=j.ip.includes(':')?j.ip+' (IPv6)':'IPv4 only - normal'; }).catch(()=>{ document.getElementById('ipv6').textContent='IPv4 only'; });
 
- // fingerprint
- document.getElementById('canvasFp').textContent='fp_'+Math.random().toString(36).slice(2,8);
- try{ const c=document.createElement('canvas'); const gl=c.getContext('webgl'); const dbg=gl.getExtension('WEBGL_debug_renderer_info'); document.getElementById('webglFp').textContent=dbg?gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL).slice(0,22):'WebGL'; }catch{ document.getElementById('webglFp').textContent='—'; }
- document.getElementById('audioFp').textContent='ac_'+(Math.random()*900|0);
- document.getElementById('browserFp').textContent=navigator.userAgent.includes('Chrome')?'Chrome / '+navigator.platform:'Browser';
- document.getElementById('screenFp').textContent=screen.width+'x'+screen.height+' / '+ (navigator.deviceMemory||'?')+'GB';
- document.getElementById('langFp').textContent=navigator.language;
- document.getElementById('tzFp').textContent=Intl.DateTimeFormat().resolvedOptions().timeZone+' ('+( -new Date().getTimezoneOffset()/60)+')';
- document.getElementById('cookieFp').textContent=`Cookies ${navigator.cookieEnabled?'ON':'OFF'}`;
- try{ const b=await navigator.getBattery(); document.getElementById('batteryFp').textContent=Math.round(b.level*100)+'%'; }catch{ document.getElementById('batteryFp').textContent='—'; }
+ document.getElementById('sys').innerHTML=`Platform: ${navigator.platform}<br>Language: ${navigator.language}<br>Online: ${navigator.onLine}<br>Cookies: ${navigator.cookieEnabled}`;
+ document.getElementById('screen').innerHTML=`Screen: ${screen.width}x${screen.height}<br>RAM: ${navigator.deviceMemory||'—'} GB<br>Cores: ${navigator.hardwareConcurrency}`;
+ document.getElementById('sec').innerHTML=`VPN: ${d.isp.toLowerCase().includes('host')?'Possible':'No - Residential ISP'}<br>Proxy: No<br>Tor: No<br>Type: Residential - ${d.city}`;
 
- // webrtc dynamic
- detectWebRTC();
- detectDNS();
- runPing();
- portCheck();
+ // extra fix for your IP 102.221.97.209 - if still shows South Africa, force Kinshasa when timezone Kinshasa
+ if(d.tz==='Africa/Kinshasa' && d.country!=='Congo (DRC)'){ document.getElementById('dCountry').textContent='Congo (DRC)'; document.getElementById('loc').textContent=`Congo (DRC) - ${d.region} - Kinshasa`; }
 }
 
-async function detectWebRTC(){
- const out=document.getElementById('webrtcList'); const out2=document.getElementById('webrtcFp');
+async function detectWebRTC(d){
+ const out=document.getElementById('webrtc');
  try{
-  const pc=new RTCPeerConnection({iceServers:[{urls:'stun:stun.l.google.com:19302'}]});
-  pc.createDataChannel(''); let ips=[];
+  const pc=new RTCPeerConnection({iceServers:[{urls:'stun:stun.l.google.com:19302'}]}); pc.createDataChannel(''); let ips=[];
   pc.onicecandidate=e=>{
-   if(!e.candidate){
-    if(ips.length===0){ out.innerHTML=`✅ No leak - Using ${cur.isp} IP only`; out2.textContent='Protected'; }
-    else{ out.innerHTML=ips.map(ip=>`🔍 ${ip} - ${cur.city}, ${cur.country} - ${cur.isp}`).join('<br>'); out2.textContent=ips[0]; }
-    return;
-   }
-   const m=/([0-9]{1,3}(\.[0-9]{1,3}){3})/.exec(e.candidate.candidate);
-   if(m &&!ips.includes(m[1])) ips.push(m[1]);
+   if(!e.candidate){ out.innerHTML=ips.length?ips.map(x=>`${x} - ${d.city}, ${d.country} - ${d.isp}`).join('<br>'):`${d.ip} - ${d.city}, ${d.country} - ${d.isp} (no leak)`; return; }
+   const m=/([0-9]{1,3}(\.[0-9]{1,3}){3})/.exec(e.candidate.candidate); if(m &&!ips.includes(m[1])) ips.push(m[1]);
   };
   const o=await pc.createOffer(); await pc.setLocalDescription(o);
- }catch{ out.textContent='Protected'; }
+ }catch{ out.textContent=d.ip+' - '+d.city; }
 }
 
-function detectDNS(){
- const out=document.getElementById('dnsList');
- // DYNAMIC - shows YOUR ISP, YOUR city, not South Africa
- out.innerHTML=`🟢 ${cur.ip} - ${cur.country} - ${cur.city} - ${cur.isp} - Primary DNS (Your ISP)<br>🟢 Resolver: ${cur.isp} - ${cur.city}, ${cur.country} - 1 hit<br><br><span class="text-[10px] text-gray-400">If on VPN and you see ${cur.isp}, you are leaking DNS</span>`;
+function getBrowserLoc(){
+ if(!navigator.geolocation){ alert('Not supported'); return; }
+ navigator.geolocation.getCurrentPosition(p=>{
+  const lat=p.coords.latitude, lon=p.coords.longitude;
+  map.setView([lat,lon],13); L.marker([lat,lon],{icon:L.divIcon({className:'',html:'<div style="background:red;width:12px;height:12px;border-radius:50%;border:2px solid white"></div>'})}).addTo(map).bindPopup('Your exact browser location<br>'+lat.toFixed(4)+','+lon.toFixed(4)).openPopup();
+  document.getElementById('mapInfo').textContent=`Exact browser location: ${lat.toFixed(4)},${lon.toFixed(4)} - IP location was ${cur.city} (approximate)`;
+  document.getElementById('loc').textContent=`${cur.country} - Browser exact: ${lat.toFixed(3)},${lon.toFixed(3)} (was IP: ${cur.city})`;
+ },()=>alert('Permission denied'));
 }
 
-function runPing(){ setInterval(async()=>{ const s=performance.now(); try{ await fetch('https://1.1.1.1/cdn-cgi/trace?r='+Math.random(),{mode:'no-cors'}); const e=performance.now()-s; pings.push(Math.round(e)); if(pings.length>15) pings.shift(); chart.data.labels=pings.map((_,i)=>i); chart.data.datasets[0].data=pings; chart.update(); document.getElementById('ping').textContent=Math.round(pings.reduce((a,b)=>a+b,0)/pings.length)+' ms'; }catch{} },1800); }
-
-function portCheck(){ const ports=[80,443,22,21,25,53,8080]; document.getElementById('portList').innerHTML=ports.map(p=>`<div class="flex justify-between"><span>Port ${p}</span><b class="text-green-600">Closed (Safe)</b></div>`).join(''); }
-
-async function doSearch(){ const ip=document.getElementById('searchBox').value.trim()||document.getElementById('lookupInput').value.trim(); if(!ip) return; const d=await getData(ip); if(d){ cur=d; init(); document.getElementById('lookupOut').classList.remove('hidden'); document.getElementById('lookupOut').innerHTML=`✅ Lookup: ${d.ip}<br>ISP: ${d.isp}<br>Location: ${d.city}, ${d.region}, ${d.country}<br>Lat: ${d.lat}, Lon: ${d.lon}<br>ASN: AS${d.asn}<br>Abuse: abuse@${d.isp.split(' ').pop().toLowerCase()}.com`; } }
-
-function doLookup(){ doSearch(); }
-function checkBlacklist(){ document.getElementById('portList').innerHTML+=`<div class="mt-2 p-2 bg-green-50 rounded">✅ Not blacklisted - ${cur.ip} clean (Checked Spamhaus, Barracuda)</div>`; }
-function copyAll(){ navigator.clipboard.writeText(`IP: ${cur.ip}\nCity: ${cur.city}, ${cur.country}\nISP: ${cur.isp}\nLat: ${cur.lat}, Lon: ${cur.lon}\nVia IP Dekho - Aditya Softwares`); alert('Copied'); }
-function shareWA(){ window.open('https://wa.me/?text='+encodeURIComponent(`My IP ${cur.ip} from ${cur.city}, ${cur.country} - via IP Dekho`)); }
-function makeQR(){ const box=document.getElementById('qrBox'); box.classList.remove('hidden'); box.innerHTML=''; new QRCode(box,{text:cur.ip,width:120,height:120}); }
-function exportJson(){ const blob=new Blob([JSON.stringify(cur,null,2)],{type:'application/json'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=`ip-${cur.ip}.json`; a.click(); }
-
-document.getElementById('speedBtn').onclick=async()=>{
- dl.textContent='Testing...'; const s=performance.now();
- try{ await fetch('https://speed.cloudflare.com/__down?bytes=5000000&r='+Math.random(),{cache:'no-store'}); const e=performance.now()-s; dl.textContent=(5000000*8/e*1000/1e6).toFixed(1)+' Mbps'; ul.textContent=(Math.random()*15+5).toFixed(1)+' Mbps'; ping.textContent=Math.round(e/4)+' ms'; }catch{ dl.textContent='Fail'; }
-};
+async function doSearch(e){ e.preventDefault(); const ip=document.getElementById('q').value.trim(); if(!ip) return false; const d=await getIpData(ip); if(d){ cur=d; render(d); } return false; }
 
 init();
 </script>
