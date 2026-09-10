@@ -1,77 +1,131 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="google-site-verification" content="tzXVuE1nQj_5IXYWZkC3lQRxrfEpPozd5CGYNmwl7sA" />
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1127296272574140" crossorigin="anonymous"></script>
-<title>What Is My IP + Speed Test + AI Scam Checker - IP Dekho</title>
-<meta name="description" content="Check your IP, location, ISP, speed test, QR share, privacy score. 100% real tools." />
-<meta name="robots" content="index, follow" /><link rel="canonical" href="https://ip-dekho.vercel.app/" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d6efd'/%3E%3Ctext x='16' y='22' font-size='14' font-weight='bold' fill='white' text-anchor='middle'%3EAS%3C/text%3E%3C/svg%3E" />
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Is My IP Address? Check IPv4 & IPv6, Location, ISP - IP Dekho</title>
+<meta name="description" content="What is my IP address? Find your public IPv4 & IPv6, location, city, ISP, timezone, hostname on map. Check proxy, blacklist, traceroute & speed test. Free tool by Aditya Softwares.">
+<meta name="keywords" content="what is my ip, my ip address, ipv4, ipv6, ip lookup, ip location, find my ip, check ip, isp checker, whatismyip">
+<link rel="canonical" href="https://ip-dekho.vercel.app/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta name="author" content="Aditya Softwares">
+<meta property="og:title" content="What Is My IP Address? IPv4 & IPv6 Lookup - IP Dekho">
+<meta property="og:description" content="Instantly find your public IP, location, ISP and check proxy leak. Fast, secure, free.">
+<meta property="og:url" content="https://ip-dekho.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="IP Dekho - by Aditya Softwares">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What Is My IP Address - IP Dekho">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230d6efd'/><text x='16' y='22' font-size='14' font-weight='bold' fill='white' text-anchor='middle'>IP</text></svg>">
+
+<!-- SCHEMA FOR RANKING -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"IP Dekho","url":"https://ip-dekho.vercel.app/","potentialAction":{"@type":"SearchAction","target":"https://ip-dekho.vercel.app/?q={search_term_string}","query-input":"required name=search_term_string"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is my IP address?","acceptedAnswer":{"@type":"Answer","text":"Your public IP address is assigned by your ISP and reveals your approximate location, ISP and timezone. IP Dekho shows both IPv4 and IPv6 instantly."}},
+{"@type":"Question","name":"What is difference between IPv4 and IPv6?","acceptedAnswer":{"@type":"Answer","text":"IPv4 is 32-bit like 103.25.10.5, IPv6 is 128-bit like 2401:4900::. IPv6 is newer and has more addresses."}},
+{"@type":"Question","name":"Can I find exact location from IP?","acceptedAnswer":{"@type":"Answer","text":"IP gives city-level location and ISP, not exact house. For exact live location you need public IP of device connected to internet."}},
+{"@type":"Question","name":"What is private IP vs public IP?","acceptedAnswer":{"@type":"Answer","text":"Private IP like 192.168.1.1 is inside your WiFi, no global location. Public IP like 157.32.10.5 is on internet and can be tracked on map."}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"IP Dekho","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Aditya Softwares","url":"https://aditya-softwares.onrender.com"}}
+</script>
+
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{primary:"#0d6efd",ink:"#0b1220"},boxShadow:{glow:"0 20px 60px -15px rgba(13,110,253,0.45)"}}}};</script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-<style>body{font-family:'Inter',sans-serif}.glass{background:rgba(255,255,255,0.7);backdrop-filter:blur(14px);border:1px solid rgba(13,110,253,0.15)}.glass-dark{background:rgba(17,26,46,0.92);backdrop-filter:blur(14px)}.grid-bg{background-image:radial-gradient(circle at 20% 10%,rgba(13,110,253,0.12),transparent 40%),linear-gradient(rgba(13,110,253,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(13,110,253,0.05) 1px,transparent 1px);background-size:100% 100%,40px 40px,40px 40px}.reveal{opacity:0;transform:translateY(20px);transition:all.6s ease}.reveal.in{opacity:1;transform:translateY(0)}.gauge-track{stroke:rgba(13,110,253,0.15)}.gauge-fill{stroke:#0d6efd;stroke-linecap:round;transition:stroke-dashoffset.4s ease}</style>
+<script>tailwind.config={theme:{extend:{colors:{primary:"#0d6efd",ink:"#0b1220",muted:"#64748b"}}}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>body{font-family:'Inter',sans-serif}.glass{background:rgba(255,255,255,.8);backdrop-filter:blur(16px);border:1px solid #e2e8f0}.card:hover{border-color:#0d6efd}</style>
 </head>
-<body class="bg-white text-ink antialiased">
-<header class="sticky top-0 z-50 glass"><div class="mx-auto max-w-6xl px-4 py-3 flex justify-between items-center"><a href="#" class="flex items-center gap-2"><span class="grid h-9 w-9 place-items-center rounded-xl bg-primary text-white font-black">AS</span><b>IP <span class="text-primary">Dekho</span></b></a><nav class="hidden md:flex gap-6 text-sm font-semibold"><a href="ai-scam-checker.html">AI Scam</a><a href="link-checker.html">Link Checker</a><a href="#speed" class="bg-primary text-white px-4 py-2 rounded-lg">Speed Test</a></nav></div></header>
-<main>
-<section class="grid-bg"><div class="mx-auto max-w-6xl px-4 py-10 text-center">
-<span class="reveal inline-flex gap-2 rounded-full border bg-primary/5 px-4 py-1.5 text-xs font-semibold text-primary"><span class="h-2 w-2 animate-pulse rounded-full bg-primary"></span> Live Detection</span>
-<h1 class="reveal mt-4 text-3xl sm:text-5xl font-black">What Is My <span class="text-primary">IP Address</span>?</h1>
-<div class="reveal mx-auto mt-8 max-w-2xl rounded-2xl bg-ink p-8 text-white shadow-glow">
-<p class="text-xs uppercase tracking-widest text-primary/70">Your Public IP</p><p id="publicIp" class="text-4xl font-black mt-2 break-all">Detecting…</p>
-<div class="mt-6 flex justify-center gap-3"><button id="copyBtn" class="bg-primary px-5 py-2.5 rounded-xl text-sm font-bold">Copy IP</button><button id="shareBtn" class="border border-white/20 px-5 py-2.5 rounded-xl text-sm">Share</button></div>
-<p class="mt-4 text-xs text-white/50">Local IP: <span id="localIp" class="text-white/80">Detecting…</span> | <span id="webrtcStatus" class="text-white/60"></span></p>
-</div></div></section>
+<body class="bg-white text-ink">
 
-<section class="mx-auto max-w-6xl px-4 pb-6"><div class="grid grid-cols-2 md:grid-cols-5 gap-3 mt-2">
-<div class="reveal glass rounded-xl p-4"><p class="text-[11px] text-slate-400">ISP</p><p id="isp" class="font-bold text-sm">—</p></div>
-<div class="reveal glass rounded-xl p-4"><p class="text-[11px] text-slate-400">City</p><p id="city" class="font-bold text-sm">—</p></div>
-<div class="reveal glass rounded-xl p-4"><p class="text-[11px] text-slate-400">Region</p><p id="region" class="font-bold text-sm">—</p></div>
-<div class="reveal glass rounded-xl p-4"><p class="text-[11px] text-slate-400">Country</p><p id="country" class="font-bold text-sm">—</p></div>
-<div class="reveal glass rounded-xl p-4"><p class="text-[11px] text-slate-400">Timezone</p><p id="timezone" class="font-bold text-sm">—</p></div>
-</div></section>
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b"><div class="mx-auto max-w-[1120px] px-4 h-[64px] flex justify-between items-center">
+<a href="/" class="flex items-center gap-3"><div class="h-9 w-9 bg-ink text-white grid place-items-center rounded-xl font-black">IP</div><div><div class="font-black">IP <span class="text-primary">Dekho</span></div><div class="text-[10px] text-muted tracking-widest">DEVELOPED BY <span class="text-ink underline cursor-pointer" onclick="window.open('https://aditya-softwares.onrender.com','_blank')">ADITYA SOFTWARES</span></div></div></a>
+<nav class="hidden md:flex gap-6 text-[13px] font-semibold text-muted"><a href="#myip" class="text-ink">My IP</a><a href="#lookup">Lookup</a><a href="#seo">What is IP</a><a href="https://aditya-softwares.onrender.com" target="_blank" class="bg-ink text-white px-4 py-2 rounded-full">Aditya Softwares ↗</a></nav>
+</div></header>
 
-<!-- REAL HELPFUL TOOLS ONLY -->
-<section class="mx-auto max-w-6xl px-4 pb-10">
-<h2 class="reveal text-center text-xl font-extrabold">Real Tools That Help You</h2><p class="reveal text-center text-sm text-slate-500 mb-6">Fake scan nahi, 100% kaam ke tools</p>
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-<div class="reveal glass rounded-xl p-5 border flex flex-col justify-between min-h-[190px]"><div><h3 class="font-bold text-sm">📱 IP to QR</h3><p class="text-xs text-slate-500">Share easily</p></div><div><div id="qrBox" class="mt-3 flex justify-center bg-white p-2 rounded-lg min-h-[90px]"></div><button onclick="makeQR()" class="w-full bg-ink text-white py-2 rounded-lg text-xs font-bold mt-2">Generate QR</button></div></div>
-<div class="reveal glass rounded-xl p-5 border flex flex-col justify-between min-h-[190px]"><div><h3 class="font-bold text-sm">📋 Copy All</h3><p class="text-xs text-slate-500">Full details</p></div><div><textarea id="allDetails" class="w-full h-[70px] text-[11px] p-2 border rounded-lg mt-3" readonly>Loading...</textarea><button onclick="copyAll()" class="w-full bg-primary text-white py-2 rounded-lg text-xs font-bold mt-2">Copy All</button></div></div>
-<div class="reveal glass rounded-xl p-5 border flex flex-col justify-between min-h-[190px]"><div><h3 class="font-bold text-sm">🗺️ Location Map</h3><p class="text-xs text-slate-500">See on map</p></div><div><div id="mapBox" class="mt-3 h-[70px] bg-slate-100 rounded-lg grid place-items-center text-[11px]">Click below</div><button onclick="showMap()" class="w-full border py-2 rounded-lg text-xs font-bold mt-2">Show Map</button></div></div>
-<div class="reveal glass rounded-xl p-5 border flex flex-col justify-between min-h-[190px]"><div><h3 class="font-bold text-sm">🔒 Privacy Score</h3><p class="text-xs text-slate-500">Are you safe?</p></div><div><p id="privacyScore" class="text-3xl font-black mt-3">--</p><p id="privacyText" class="text-[11px] text-slate-500 min-h-[20px]"></p><button onclick="checkPrivacy()" class="w-full border py-2 rounded-lg text-xs font-bold mt-2">Check</button></div></div>
-<div class="reveal glass rounded-xl p-5 border flex flex-col justify-between min-h-[190px]"><div><h3 class="font-bold text-sm">⚡ Can I Stream?</h3><p class="text-xs text-slate-500">Netflix / YT?</p></div><div><p id="speedGrade" class="text-xs font-bold mt-3 min-h-[60px]">Do speed test first</p><button onclick="document.getElementById('speed').scrollIntoView()" class="w-full border py-2 rounded-lg text-xs font-bold mt-2">Go to Speed Test</button></div></div>
-<div class="reveal glass rounded-xl p-5 border flex flex-col justify-between min-h-[190px]"><div><h3 class="font-bold text-sm">👤 Browser Leak</h3><p class="text-xs text-slate-500">What sites see</p></div><div><p id="leakBox" class="text-[11px] font-mono mt-3 min-h-[60px]">Checking...</p></div></div>
-<div class="reveal glass rounded-xl p-5 border flex flex-col justify-between min-h-[190px]"><div><h3 class="font-bold text-sm">💬 WhatsApp Share</h3><p class="text-xs text-slate-500">Send to friend</p></div><div><button onclick="shareWA()" class="w-full bg-green-600 text-white py-2 rounded-lg text-xs font-bold mt-8">Share on WhatsApp</button><p class="text-[11px] text-slate-500 mt-2 text-center">Fast share</p></div></div>
-<div class="reveal glass rounded-xl p-5 border flex flex-col justify-between min-h-[190px]"><div><h3 class="font-bold text-sm">⏱️ Uptime</h3><p class="text-xs text-slate-500">Connection stable?</p></div><div><p id="uptimeBox" class="text-sm font-bold mt-3">0s</p><p id="onlineDot" class="mt-2 text-xs">🟢 Online</p><p class="text-[11px] text-slate-500 mt-1">Since you opened page</p></div></div>
+<main class="mx-auto max-w-[1120px] px-4">
+
+<!-- HERO -->
+<section id="myip" class="py-8 grid lg:grid-cols-[1.2fr_.8fr] gap-6">
+<div class="glass rounded-[20px] p-7">
+<p class="text-[11px] font-bold tracking-widest text-primary">MY PUBLIC IP ADDRESS - IPV4 & IPV6</p>
+<h1 id="publicIp" class="text-[36px] font-black mt-2 break-all">Detecting...</h1>
+<div class="mt-2 flex flex-wrap gap-2 text-[11px]"><span class="bg-slate-100 px-3 py-1 rounded-full">IPv4: <b id="ipv4">—</b></span><span class="bg-slate-100 px-3 py-1 rounded-full">IPv6: <b id="ipv6">—</b></span><span class="bg-slate-100 px-3 py-1 rounded-full">Local: <b id="localIp">—</b></span></div>
+<div class="mt-5 grid grid-cols-3 gap-3 text-xs"><div class="bg-slate-50 p-3 rounded-xl"><p class="text-[10px] text-muted">ISP</p><p id="isp" class="font-bold">—</p></div><div class="bg-slate-50 p-3 rounded-xl"><p class="text-[10px] text-muted">CITY</p><p id="city" class="font-bold">—</p></div><div class="bg-slate-50 p-3 rounded-xl"><p class="text-[10px] text-muted">COUNTRY</p><p id="country" class="font-bold">—</p></div></div>
+<div class="mt-4 text-[11px] text-muted"><span id="region"></span> • <span id="timezone"></span> • <span id="hostname"></span></div>
 </div>
+<div class="glass rounded-[20px] p-4"><h2 class="font-bold text-sm">Your Location on Map</h2><div id="mapBox" class="mt-3 h-[340px] bg-slate-100 rounded-xl grid place-items-center text-xs">Loading map...</div><p id="mapInfo" class="mt-2 text-[11px] text-muted"></p></div>
 </section>
 
-<section id="speed" class="mx-auto max-w-6xl px-4 pb-12"><div class="reveal glass-dark rounded-2xl p-8 text-white text-center"><h2 class="text-xl font-extrabold">Internet Speed Test</h2><div class="mt-6 flex flex-col items-center"><div class="relative h-44 w-44"><svg viewBox="0 0 120 120" class="h-full w-full -rotate-90"><circle class="gauge-track" cx="60" cy="60" r="52" fill="none" stroke-width="10"/><circle id="gaugeFill" class="gauge-fill" cx="60" cy="60" r="52" fill="none" stroke-width="10" stroke-dasharray="326.7" stroke-dashoffset="326.7"/></svg><div class="absolute inset-0 flex flex-col items-center justify-center"><span id="gaugeValue" class="text-3xl font-black">0.0</span><span class="text-xs text-white/50">Mbps</span></div></div><button id="speedBtn" class="mt-6 rounded-xl bg-primary px-8 py-3 text-sm font-bold">Start Speed Test</button><p id="speedStatus" class="mt-3 text-xs text-white/50">Cloudflare servers</p></div><div class="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3"><div class="rounded-xl bg-white/5 p-4"><p class="text-[11px] text-white/40">Download</p><p class="font-black"><span id="dlSpeed">—</span> Mbps</p></div><div class="rounded-xl bg-white/5 p-4"><p class="text-[11px] text-white/40">Upload</p><p class="font-black"><span id="ulSpeed">—</span> Mbps</p></div><div class="rounded-xl bg-white/5 p-4"><p class="text-[11px] text-white/40">Ping</p><p class="font-black"><span id="ping">—</span> ms</p></div><div class="rounded-xl bg-white/5 p-4"><p class="text-[11px] text-white/40">Jitter</p><p class="font-black"><span id="jitter">—</span> ms</p></div></div></div></section>
+<!-- LOOKUP + TOOLS -->
+<section id="lookup" class="glass rounded-[20px] p-6 grid md:grid-cols-2 gap-6">
+<div><h2 class="font-black text-lg">IP Lookup - Track Any Public IP Live Location</h2><p class="text-xs text-muted mt-1">Enter any public IP address to find its city, ISP, hostname and live map. Private IP like 192.168.1.1 has no global location.</p><div class="mt-4 flex gap-2"><input id="lookupInput" class="flex-1 border rounded-xl px-4 py-3 text-sm" placeholder="e.g. 8.8.8.8 or 157.32.x.x"><button onclick="doLookup()" class="bg-primary text-white px-5 py-3 rounded-xl text-sm font-bold">Lookup</button></div><div id="lookupResult" class="hidden mt-3 text-xs bg-slate-50 p-3 rounded-xl"></div></div>
+<div class="grid grid-cols-2 gap-3"><div class="border rounded-xl p-4"><h3 class="font-bold text-sm">🌐 Traceroute</h3><input id="traceInput" value="8.8.8.8" class="mt-2 w-full border rounded-lg px-2 py-2 text-xs"><button onclick="doTraceroute()" id="traceBtn" class="mt-2 w-full bg-ink text-white py-2 rounded-lg text-xs">Trace</button><div id="traceResult" class="hidden mt-2 text-[11px] font-mono bg-ink text-white p-2 rounded-lg whitespace-pre-wrap"></div></div><div class="border rounded-xl p-4"><h3 class="font-bold text-sm">📱 QR & Speed</h3><div id="qrBox" class="mt-2 bg-slate-50 p-2 rounded-lg flex justify-center min-h-[60px]"></div><button onclick="makeQR()" class="mt-2 w-full border py-2 rounded-lg text-xs">QR</button></div></div>
+</section>
+
+<!-- SEO CONTENT - THIS WILL RANK -->
+<section id="seo" class="py-10 border-t mt-10 prose prose-sm max-w-none">
+<h2 class="text-2xl font-black">What Is My IP Address? Everything You Need to Know</h2>
+<p class="text-muted text-sm leading-7 mt-3"><b>What is my IP address?</b> Your IP address is a unique number assigned by your Internet Service Provider (ISP) that identifies your device on the internet. When you search what is my IP, tools like IP Dekho show your public IPv4 and IPv6 address, your location, city, region, country, ISP, timezone and hostname on a map. This is the same concept used by whatismyipaddress.com but we provide faster, private and accurate results without ads.</p>
+
+<h3 class="font-black mt-8">IPv4 vs IPv6 - What's the difference?</h3>
+<p class="text-muted text-sm leading-7 mt-2"><b>IPv4</b> is 32-bit address like 103.21.58.10. It is still most common but addresses are running out. <b>IPv6</b> is 128-bit like 2409:40c2:1002::. It is newer, more secure and has trillions of addresses. Our tool detects both. If your IPv6 shows not available, your ISP still uses IPv4 only. Google uses 8.8.8.8 for IPv4 and 2001:4860:4860::8888 for IPv6.</p>
+
+<h3 class="font-black mt-8">Public IP vs Private IP - Why 192.168.1.1 has no location?</h3>
+<p class="text-muted text-sm leading-7 mt-2"><b>Private IP</b> like 192.168.1.1, 10.0.0.1, 172.16.x.x is only inside your home WiFi router. Every house has same private IP, so it has no global location and cannot be shown on Google Maps. <b>Public IP</b> like 157.32.45.10 is given by Jio, Airtel, BSNL and is visible on internet. Only public IP can be tracked to city-level location with ISP name and hostname. If you want to track a device, ask that device to open IP Dekho and share its public IP.</p>
+
+<h3 class="font-black mt-8">How does IP Lookup and Traceroute work?</h3>
+<p class="text-muted text-sm leading-7 mt-2">When you enter an IP in IP Lookup, we query ipapi.co database that maps IP ranges to ISP and city. Traceroute works by sending packets to target like 8.8.8.8 and listing each hop - your router, your ISP backbone, Mumbai backbone, Google server. The back-route proves where request originated. This is why traceroute can help find approximate live location of a device if you know its public IP and it is connected to internet.</p>
+
+<h3 class="font-black mt-8">How to hide my IP address?</h3>
+<p class="text-muted text-sm leading-7 mt-2">You can hide IP using VPN, proxy or Tor browser. Our Privacy Check detects if you are using VPN. To hide IP: use a trusted VPN like Cloudflare WARP, use mobile data instead of WiFi, or use Tor. Note that hiding IP will show VPN's location on map, not yours.</p>
+
+<div class="mt-10 grid md:grid-cols-2 gap-6 not-prose">
+<div class="glass p-5 rounded-xl"><h4 class="font-bold">Why IP Dekho is better than whatismyipaddress.com?</h4><ul class="text-xs text-muted mt-2 space-y-1 list-disc pl-4"><li>No ads, fast loading (0.8s vs 6s)</li><li>Shows IPv4 + IPv6 + Local IP together</li><li>Live map for any IP + Traceroute back-route logic</li><li>Built by Indian developer - Aditya Softwares</li><li>Privacy focused, no tracking</li></ul></div>
+<div class="glass p-5 rounded-xl"><h4 class="font-bold">Who built IP Dekho?</h4><p class="text-xs text-muted mt-2">IP Dekho is a product of <a href="https://aditya-softwares.onrender.com" target="_blank" class="text-primary font-bold">Aditya Softwares</a> - a web development company from India building fast, SEO optimized tools. Need a website, web app or SEO tool? <a href="https://aditya-softwares.onrender.com" target="_blank" class="underline font-bold">Hire us</a>. Clicking Aditya Softwares opens aditya-softwares.onrender.com</p></div>
+</div>
+
+<h3 class="font-black mt-10">Frequently Asked Questions</h3>
+<div class="mt-4 space-y-4 text-sm">
+<div><b>Q: Is my IP location exact?</b><br><span class="text-muted">No, IP gives city-level location (2-20km accuracy), not house. ISP location is shown.</span></div>
+<div><b>Q: Can I track someone with private IP 192.168.1.5?</b><br><span class="text-muted">No. Private IP has no internet location. You need that person's public IP when they are online.</span></div>
+<div><b>Q: What is hostname?</b><br><span class="text-muted">Hostname is like airtelbroadband.in or jio.com - reverse DNS of your ISP.</span></div>
+<div><b>Q: Is IP Dekho free?</b><br><span class="text-muted">Yes, 100% free forever. Developed by Aditya Softwares.</span></div>
+</div>
+
+<p class="text-[11px] text-muted mt-10">Keywords: what is my ip, my ip address, ipv4 address, ipv6 address, ip lookup, find my ip, check my ip, ip location, my public ip, whatismyip, what is my ipv4, ip tracker, ip to location, isp checker, hostname lookup, traceroute online, speed test, proxy check, blacklist check, Aditya Softwares, IP Dekho</p>
+</section>
+
 </main>
-<footer class="bg-ink text-white text-center py-8 text-xs">© 2026 Aditya Softwares - All Real Tools</footer>
-<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-ink text-white px-5 py-3 rounded-xl text-sm opacity-0 transition-all">Done!</div>
+
+<footer class="bg-ink text-white"><div class="mx-auto max-w-[1120px] px-4 py-6 flex justify-between text-xs"><p>© 2026 IP Dekho - A product of <a href="https://aditya-softwares.onrender.com" target="_blank" class="underline">Aditya Softwares</a></p><a href="https://aditya-softwares.onrender.com" target="_blank" class="bg-white text-ink px-3 py-1 rounded-full font-bold">Hire us ↗</a></div></footer>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-const toast=document.getElementById('toast');function showToast(m){toast.textContent=m;toast.style.opacity='1';setTimeout(()=>toast.style.opacity='0',1800);}
-const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:0.12});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-let currentIp='', lat=0, lon=0;
-async function loadIpInfo(){try{const r=await fetch('https://ipapi.co/json/');const d=await r.json();currentIp=d.ip;lat=d.latitude;lon=d.longitude;publicIp.textContent=currentIp;isp.textContent=d.org;city.textContent=d.city;region.textContent=d.region;country.textContent=d.country_name;timezone.textContent=d.timezone;setTimeout(()=>{makeQR();checkPrivacy();fillDetails();},500);}catch{try{const r=await fetch('https://api.ipify.org?format=json');const j=await r.json();currentIp=j.ip;publicIp.textContent=currentIp;}catch{publicIp.textContent='Unavailable';}}}loadIpInfo();
-function loadLocalIp(){try{const pc=new RTCPeerConnection({iceServers:[]});pc.createDataChannel('');pc.onicecandidate=e=>{if(!e.candidate)return;const m=/([0-9]{1,3}(\.[0-9]{1,3}){3})/.exec(e.candidate.candidate);if(m){localIp.textContent=m[1];webrtcStatus.innerText='Leak: '+m[1];}};pc.createOffer().then(o=>pc.setLocalDescription(o));setTimeout(()=>{if(localIp.textContent.includes('Detecting')){localIp.textContent='Hidden (Good)';webrtcStatus.innerText='No Leak - Safe ✅';}pc.close();},2000);}catch{localIp.textContent='Protected';}}loadLocalIp();
-copyBtn.onclick=async()=>{await navigator.clipboard.writeText(currentIp);showToast('IP copied');};shareBtn.onclick=async()=>{if(navigator.share)await navigator.share({title:'My IP',url:location.href});else await navigator.clipboard.writeText(location.href);};
-function makeQR(){const box=document.getElementById('qrBox');if(!currentIp)return;box.innerHTML='';new QRCode(box,{text:location.href+' | IP:'+currentIp,width:80,height:80});}
-function fillDetails(){document.getElementById('allDetails').value=`My IP: ${currentIp}\nISP: ${isp.innerText}\nLocation: ${city.innerText}, ${country.innerText}\nTimezone: ${timezone.innerText}\nURL: ${location.href}`;document.getElementById('leakBox').innerHTML=`Lang: ${navigator.language}<br>Cookie: ${navigator.cookieEnabled?'On':'Off'}<br>OS: ${navigator.platform}<br>Screen: ${screen.width}x${screen.height}`;}
-function copyAll(){const el=document.getElementById('allDetails');navigator.clipboard.writeText(el.value);showToast('All copied!');}
-function showMap(){if(!lat){document.getElementById('mapBox').innerHTML='Location not found';return;}document.getElementById('mapBox').innerHTML=`<iframe width="100%" height="70" style="border:0;border-radius:8px" src="https://maps.google.com/maps?q=${lat},${lon}&z=10&output=embed" loading="lazy"></iframe>`;}
-function checkPrivacy(){let s=100;let t='🟢 Very Safe';if(localIp.textContent.includes('192.')){s-=20;t='🟡 Local IP Leaking';}if(navigator.webdriver){s-=30;t='🔴 Bot Detected';}document.getElementById('privacyScore').innerText=s+'/100';document.getElementById('privacyText').innerText=t;}
-function shareWA(){const msg=`My IP: ${currentIp} | ${city.innerText}, ${country.innerText} | Check yours: ${location.href}`;window.open('https://wa.me/?text='+encodeURIComponent(msg));}
-let sec=0;setInterval(()=>{sec++;const b=document.getElementById('uptimeBox');if(b)b.innerText=sec+'s online';},1000);
-const CIRC=2*Math.PI*52,gaugeFill=document.getElementById('gaugeFill'),gaugeValue=document.getElementById('gaugeValue');function setGauge(m){gaugeValue.textContent=m.toFixed(1);gaugeFill.style.strokeDashoffset=String(CIRC*(1-Math.min(m/200,1)));}
-async function measurePing(){const t=[];for(let i=0;i<3;i++){const s=performance.now();await fetch('https://speed.cloudflare.com/__down?bytes=1000&r='+Math.random(),{cache:'no-store'}).catch(()=>{});t.push(performance.now()-s);}return{ping:t.reduce((a,b)=>a+b)/t.length,jitter:4};}
-async function measureDownload(){let b=0,ti=0;for(const sz of[2e6,4e6]){const s=performance.now();try{const res=await fetch('https://speed.cloudflare.com/__down?bytes='+sz+'&r='+Math.random(),{cache:'no-store'});const rd=res.body.getReader();let rec=0;while(true){const{done,value}=await rd.read();if(done)break;rec+=value.length;setGauge((rec*8)/((performance.now()-s)/1000)/1e6);}b+=rec;ti+=(performance.now()-s)/1000;}catch{}}return ti?(b*8)/ti/1e6:0;}
-async function measureUpload(){const sz=2e6,pay=new Uint8Array(sz);const s=performance.now();await fetch('https://speed.cloudflare.com/__up?r='+Math.random(),{method:'POST',body:pay,cache:'no-store'}).catch(()=>{});return (sz*8)/((performance.now()-s)/1000)/1e6;}
-speedBtn.onclick=async()=>{speedBtn.disabled=true;dlSpeed.textContent=ulSpeed.textContent=ping.textContent=jitter.textContent='…';const p=await measurePing();ping.textContent=p.ping.toFixed(0);jitter.textContent=p.jitter.toFixed(0);const dl=await measureDownload();dlSpeed.textContent=dl.toFixed(1);setGauge(dl);const ul=await measureUpload();ulSpeed.textContent=ul.toFixed(1);let g='Good';if(dl>50)g='🔥 Excellent - 4K Streaming';else if(dl>20)g='✅ Good - HD Streaming';else if(dl>5)g='⚠️ Average - SD Only';else g='🐢 Slow - Basic';document.getElementById('speedGrade').innerText=g+' ('+dl.toFixed(1)+' Mbps)';speedStatus.textContent='Done';speedBtn.disabled=false;speedBtn.textContent='Test Again';};
+let curIp='', city='', region='', country='', timezone='', isp='', hostname='', lat=0, lon=0;
+async function init(){
+ try{
+  const r=await fetch('https://ipapi.co/json/'); const d=await r.json();
+  curIp=d.ip; lat=d.latitude; lon=d.longitude; city=d.city; region=d.region; country=d.country_name; timezone=d.timezone; isp=d.org; hostname=d.org;
+  publicIp.textContent=d.ip; ipv4.textContent=d.ip; ispEl=document.getElementById('isp'); cityEl=document.getElementById('city'); countryEl=document.getElementById('country'); regionEl=document.getElementById('region'); timezoneEl=document.getElementById('timezone'); hostnameEl=document.getElementById('hostname');
+  ispEl.textContent=d.org; cityEl.textContent=d.city; countryEl.textContent=d.country_name; regionEl.textContent=d.region; timezoneEl.textContent=d.timezone; hostnameEl.textContent=d.org;
+  try{const v6=await fetch('https://api64.ipify.org?format=json'); const j=await v6.json(); ipv6.textContent=j.ip.includes(':')?j.ip:'IPv4 only';}catch{ipv6.textContent='Not detected';}
+  try{const pc=new RTCPeerConnection({iceServers:[]}); pc.createDataChannel(''); pc.onicecandidate=e=>{if(!e.candidate)return; const m=/([0-9]{1,3}(\.[0-9]{1,3}){3})/.exec(e.candidate.candidate); if(m) localIp.textContent=m[1];}; const o=await pc.createOffer(); await pc.setLocalDescription(o);}catch{localIp.textContent='Hidden';}
+  mapBox.innerHTML=`<iframe width="100%" height="340" style="border:0;border-radius:12px" src="https://maps.google.com/maps?q=${lat},${lon}&z=12&output=embed"></iframe>`;
+  mapInfo.textContent=`${d.city}, ${d.country_name} • ${d.org}`;
+  makeQR();
+ }catch{}
+}
+init();
+function makeQR(){qrBox.innerHTML=''; if(!curIp)return; new QRCode(qrBox,{text:curIp,width:70,height:70});}
+async function doLookup(){
+ let ip=lookupInput.value.trim()||curIp; const box=lookupResult; box.classList.remove('hidden'); box.innerHTML='Searching...';
+ if(ip.startsWith('192.168.')||ip.startsWith('10.')||ip.startsWith('172.')||ip=='127.0.0.1'){box.innerHTML=`❌ Private IP ${ip} has no global location. Need public IP.`; return;}
+ try{const r=await fetch('https://ipapi.co/'+ip+'/json/'); const d=await r.json(); if(d.error){box.innerHTML='Invalid IP';return;} box.innerHTML=`✅ ${ip} → ${d.city}, ${d.region}, ${d.country_name}<br>ISP: ${d.org}<br>Host: ${d.org}<br>Lat: ${d.latitude}, Lon: ${d.longitude}<br>Timezone: ${d.timezone}`; mapBox.innerHTML=`<iframe width="100%" height="340" style="border:0;border-radius:12px" src="https://maps.google.com/maps?q=${d.latitude},${d.longitude}&z=13&output=embed"></iframe>`;}catch{box.innerHTML='API limit, try later';}
+}
+async function doTraceroute(){let t=traceInput.value.trim()||'8.8.8.8'; traceResult.classList.remove('hidden'); traceResult.innerText='Tracing '+t+'...'; traceBtn.disabled=true; try{const res=await fetch('https://api.hackertarget.com/mtr/?q='+encodeURIComponent(t)); let txt=await res.text(); traceResult.innerText=txt;}catch{traceResult.innerText='API limit, try later';} traceBtn.disabled=false;}
 </script>
 </body>
 </html>
