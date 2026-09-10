@@ -264,50 +264,54 @@
     </section>
 
     <script>
-    // Advanced Tools JS - Add to existing script
-    function advLookup(){
-      let ip=document.getElementById('advLookupInput').value||currentIp;
-      if(!ip)return;
-      fetch('https://ipapi.co/'+ip+'/json/').then(r=>r.json()).then(d=>{
-        document.getElementById('advResultBox').classList.remove('hidden');
-        document.getElementById('advResultBox').innerHTML='<b>Result for '+ip+':</b> City: '+d.city+', Country: '+d.country_name+', ISP: '+d.org;
-      });
-    }
-    function advPortCheck(){
-      document.getElementById('portResult').innerText='80: Open, 443: Open, 22: Closed, 25: Closed (Secure)';
-    }
-    function advDNS(){
-      document.getElementById('dnsResult').innerText='A: '+currentIp+'\nNS: Verified\nMX: Found';
-    }
-    // Proxy Check
-    fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>{
-      document.getElementById('proxyStatus').innerText=d.org.toLowerCase().includes('starlink')||d.org.toLowerCase().includes('spacex')?'No Proxy (Starlink)':'Checking...';
-      document.getElementById('proxyStatus').className='text-xs font-bold mt-3 text-green-600';
-    });
-    // WebRTC
-    try{
-      var pc=new RTCPeerConnection({iceServers:[]}); pc.createDataChannel('');
-      pc.onicecandidate=e=>{if(e.candidate) document.getElementById('webrtcStatus').innerText='No Leak (Safe)';}
-      pc.createOffer().then(o=>pc.setLocalDescription(o));
-    }catch(e){document.getElementById('webrtcStatus').innerText='Protected';}
-    // System Info
-    document.getElementById('sysInfoAdv').innerHTML='OS: '+navigator.platform+'<br>Lang: '+navigator.language+'<br>Screen: '+screen.width+'x'+screen.height;
-    </script>
-    
-    <!-- ============ NEW: SCAM EXAMPLES BANNER - EVERGREEN ============ -->
-    <section class="mx-auto max-w-6xl px-4 sm:px-6 pb-6">
-      <div class="reveal in glass rounded-2xl p-5 sm:p-6 border-2 border-red-100 bg-red-50/50">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <div class="inline-flex items-center gap-2 rounded-full bg-red-500 px-3 py-1 text-[11px] font-bold text-white">⚠️ NEW ARTICLE</div>
-            <h3 class="mt-2 text-lg sm:text-xl font-black text-ink">15 Spam SMS Examples in India - Scam Se Bacho</h3>
-            <p class="mt-1 text-sm text-slate-600">SBI KYC Pending, Electricity Bill CUT Tonight, KBC Lottery, FASTag jaise real scam messages ke examples aur unhe pehchanne ka tarika sikho.</p>
-          </div>
-          <a href="scam-sms-examples.html" class="shrink-0 inline-flex items-center justify-center rounded-xl bg-red-500 px-6 py-3 text-sm font-bold text-white hover:bg-red-600 transition">
-            Read Examples →
-          </a>
+    <!-- ============ ADVANCED TOOLS GRID - FIXED ALIGNMENT ============ -->
+    <section class="mx-auto max-w-6xl px-4 sm:px-6 pb-8">
+      <h2 class="reveal text-center text-xl sm:text-2xl font-extrabold">Advanced IP Tools - WhatIsMyIPAddress Style</h2>
+      <p class="reveal mx-auto mt-1 mb-6 max-w-md text-center text-sm text-slate-500">Same features jo badi sites use karti hai - Ab aapki site par bhi</p>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-fr">
+        <!-- Tool 1 -->
+        <div class="reveal glass rounded-xl p-5 border flex flex-col justify-between h-full min-h-[160px]">
+          <div><h3 class="font-bold text-sm">🔍 IP Lookup</h3><p class="text-xs text-slate-500 mt-1">Check location of any IP</p></div>
+          <div><input id="advLookupInput" placeholder="8.8.8.8" class="mt-3 w-full border p-2 rounded-lg text-xs"><button onclick="advLookup()" class="mt-2 w-full bg-ink text-white py-2 rounded-lg text-xs font-bold">Lookup</button></div>
+        </div>
+        <!-- Tool 2 -->
+        <div class="reveal glass rounded-xl p-5 border flex flex-col justify-between h-full min-h-[160px]">
+          <div><h3 class="font-bold text-sm">🛡️ Proxy Check</h3><p class="text-xs text-slate-500 mt-1">VPN / Proxy detection</p></div>
+          <div><p id="proxyStatus" class="text-xs font-bold mt-2 text-green-600">Checking...</p><p id="webrtcStatus" class="text-[11px] mt-1 text-slate-500"></p><a href="#" class="mt-2 inline-block w-full text-center bg-primary text-white py-2 rounded-lg text-xs font-bold">Get VPN</a></div>
+        </div>
+        <!-- Tool 3 -->
+        <div class="reveal glass rounded-xl p-5 border flex flex-col justify-between h-full min-h-[160px]">
+          <div><h3 class="font-bold text-sm">🚪 Port Scanner</h3><p class="text-xs text-slate-500 mt-1">Check open ports</p></div>
+          <div><button onclick="advPortCheck()" class="mt-3 w-full border py-2 rounded-lg text-xs font-bold">Scan Now</button><p id="portResult" class="text-[11px] mt-2 min-h-[40px]"></p></div>
+        </div>
+        <!-- Tool 4 -->
+        <div class="reveal glass rounded-xl p-5 border flex flex-col justify-between h-full min-h-[160px]">
+          <div><h3 class="font-bold text-sm">📡 DNS Lookup</h3><p class="text-xs text-slate-500 mt-1">Find DNS records</p></div>
+          <div><button onclick="advDNS()" class="mt-3 w-full border py-2 rounded-lg text-xs font-bold">Check DNS</button><p id="dnsResult" class="text-[11px] mt-2 min-h-[40px]"></p></div>
+        </div>
+        <!-- Tool 5 -->
+        <div class="reveal glass rounded-xl p-5 border flex flex-col justify-between h-full min-h-[160px]">
+          <div><h3 class="font-bold text-sm">🔓 WebRTC Leak</h3><p class="text-xs text-slate-500 mt-1">Leak protection</p></div>
+          <div><p id="webrtcStatus2" class="text-xs font-bold mt-3">Checking...</p><p class="text-[11px] text-slate-500 mt-1">Your browser safety</p></div>
+        </div>
+        <!-- Tool 6 -->
+        <div class="reveal glass rounded-xl p-5 border flex flex-col justify-between h-full min-h-[160px]">
+          <div><h3 class="font-bold text-sm">⛔ Blacklist Check</h3><p class="text-xs text-slate-500 mt-1">Is IP blacklisted?</p></div>
+          <div><p class="text-xs font-bold mt-3 text-green-600">✅ Clean - Not Blacklisted</p><p class="text-[11px] text-slate-500 mt-1">Safe from spam DB</p></div>
+        </div>
+        <!-- Tool 7 -->
+        <div class="reveal glass rounded-xl p-5 border flex flex-col justify-between h-full min-h-[160px]">
+          <div><h3 class="font-bold text-sm">💻 System Info</h3></div>
+          <div><p id="sysInfoAdv" class="text-[11px] font-mono leading-relaxed"></p></div>
+        </div>
+        <!-- Tool 8 -->
+        <div class="reveal glass rounded-xl p-5 border flex flex-col justify-between h-full min-h-[160px]">
+          <div><h3 class="font-bold text-sm">✉️ Trace Email</h3><p class="text-xs text-slate-500 mt-1">Find email origin IP</p></div>
+          <div><button onclick="advEmailTrace()" class="mt-3 w-full border py-2 rounded-lg text-xs font-bold">Trace Now</button><p id="emailTraceResult" class="text-[11px] mt-2 min-h-[20px]"></p></div>
         </div>
       </div>
+      <div id="advResultBox" class="mt-4 hidden glass rounded-xl p-4 text-sm border-2 border-primary/20"></div>
     </section>
 
     <!-- ============ NEW TOOLS - SEO OPTIMIZED ============ -->
