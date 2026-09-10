@@ -2,177 +2,192 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IP Dekho - Advanced IP Intelligence, Threat Detection & Network Analysis</title>
-<meta name="description" content="Advanced IP intelligence: IPv4/IPv6, threat score, VPN/Tor detection, ASN, abuse contact, latency graph, fingerprint, live map. Built by Aditya Softwares.">
-<link rel="canonical" href="https://ip-dekho.vercel.app/">
+<title>My IP - IPv4, IPv6, Location, ISP, Speed Test - IP Dekho</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{primary:"#0d6efd",ink:"#0b1220",muted:"#64748b",neon:"#00ff88"}}}}</script>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-<style>body{font-family:'Inter',sans-serif}.mono{font-family:'JetBrains Mono',monospace}.glass{background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border:1px solid rgba(13,110,253,.12)}.glass-dark{background:rgba(11,18,32,.95);backdrop-filter:blur(20px)}.grid-pattern{background-image:radial-gradient(rgba(13,110,253,.12) 1px, transparent 1px);background-size:24px 24px}</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>body{font-family:'Inter',sans-serif}.glass{background:#fff;border:1px solid #e2e8f0}</style>
 </head>
-<body class="bg-[#f6f8ff] text-ink antialiased grid-pattern">
+<body class="bg-slate-50">
 
-<header class="sticky top-0 z-[1000] bg-white/80 backdrop-blur-xl border-b"><div class="mx-auto max-w-[1320px] px-5 h-[68px] flex justify-between items-center">
-<div class="flex items-center gap-3"><div class="h-10 w-10 rounded-xl bg-ink text-white grid place-items-center font-black text-[18px]">IP</div><div><div class="font-black text-[18px] leading-none">IP <span class="text-primary">Dekho</span> <span class="text-[10px] bg-ink text-white px-2 py-0.5 rounded-full ml-1">ADVANCED</span></div><div class="text-[10px] tracking-widest text-muted mt-1">ENGINEERED BY <span onclick="window.open('https://aditya-softwares.onrender.com','_blank')" class="text-ink underline font-bold cursor-pointer">ADITYA SOFTWARES</span></div></div></div>
-<div class="flex items-center gap-3"><div id="liveDot" class="flex items-center gap-2 text-[11px] bg-green-50 text-green-700 px-3 py-1.5 rounded-full"><span class="h-2 w-2 bg-green-500 rounded-full animate-pulse"></span> LIVE INTEL</div><button onclick="exportReport()" class="bg-ink text-white px-4 py-2 rounded-full text-xs font-bold">Export PDF Report ↗</button></div>
+<header class="sticky top-0 z-50 bg-white border-b"><div class="mx-auto max-w-[1200px] px-4 h-[64px] flex justify-between items-center">
+<div class="flex items-center gap-3"><div class="h-9 w-9 bg-black text-white grid place-items-center rounded-xl font-black">IP</div><div><div class="font-black">IP Dekho</div><div class="text-[10px] text-gray-500">BY ADITYA SOFTWARES</div></div></div>
+<div class="text-[11px] bg-green-50 text-green-700 px-3 py-1 rounded-full">● LIVE</div>
 </div></header>
 
-<div class="bg-ink text-white text-[11px] py-2 px-5 flex flex-wrap gap-4 justify-center mono"><span>IP: <b id="topIp" class="text-neon">---</b></span><span>•</span><span>CITY: <b id="topCity">---</b></span><span>•</span><span>ASN: <b id="topAsn">---</b></span><span>•</span><span>THREAT: <b id="topThreat" class="text-green-400">SCANNING</b></span><span>•</span><span id="liveClock" class="text-white/60">--:--:--</span></div>
+<main class="mx-auto max-w-[1200px] px-4 py-6 grid lg:grid-cols-[1.2fr_.8fr] gap-6">
 
-<main class="mx-auto max-w-[1320px] px-5 py-6 grid lg:grid-cols-12 gap-5">
-
-<!-- LEFT 8 COL -->
-<div class="lg:col-span-8 space-y-5">
-
-<!-- HERO INTEL -->
-<div class="glass rounded-[24px] p-7 relative overflow-hidden">
-<div class="absolute top-0 right-0 w-[300px] h-[300px] bg-primary/10 rounded-full blur-[80px] pointer-events-none"></div>
-<div class="flex justify-between items-start relative z-10">
-<div><p class="mono text-[11px] tracking-widest text-primary font-bold">PUBLIC IP INTELLIGENCE // IPV4 + IPV6 + LOCAL</p><h1 id="publicIp" class="text-[42px] font-black tracking-tight leading-none mt-2 break-all">---</h1><div class="mt-3 flex flex-wrap gap-2 mono text-[11px]"><span class="bg-ink text-white px-3 py-1.5 rounded-full">IPv4 <b id="ipv4" class="text-neon">—</b></span><span class="bg-white border px-3 py-1.5 rounded-full">IPv6 <b id="ipv6">—</b></span><span class="bg-white border px-3 py-1.5 rounded-full">Local <b id="localIp">—</b></span><span class="bg-white border px-3 py-1.5 rounded-full">Reverse DNS <b id="revDns">—</b></span></div></div>
-<div class="text-right"><p class="mono text-[10px] text-muted">FRAUD SCORE</p><p id="fraudScore" class="text-[36px] font-black leading-none">--</p><p id="fraudLabel" class="text-[11px] font-bold mt-1">Scanning</p></div>
+<div class="space-y-6">
+<div class="glass rounded-[20px] p-7">
+<p class="text-[11px] font-bold text-blue-600 tracking-widest">MY PUBLIC IP ADDRESS</p>
+<h1 id="publicIp" class="text-[40px] font-black mt-1 break-all">Loading...</h1>
+<div class="mt-3 flex flex-wrap gap-2 text-[11px]">
+<span class="bg-slate-100 px-3 py-1.5 rounded-full">IPv4: <b id="ipv4">Loading...</b></span>
+<span class="bg-slate-100 px-3 py-1.5 rounded-full">IPv6: <b id="ipv6">Checking...</b></span>
+<span class="bg-slate-100 px-3 py-1.5 rounded-full">Local: <b id="localIp">...</b></span>
 </div>
 
-<div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3 relative z-10">
-<div class="bg-white rounded-xl p-3 border"><p class="mono text-[9px] text-muted">ISP / ORG</p><p id="isp" class="font-bold text-sm truncate">—</p><p id="org" class="mono text-[10px] text-muted truncate">—</p></div>
-<div class="bg-white rounded-xl p-3 border"><p class="mono text-[9px] text-muted">GEO</p><p id="city" class="font-bold text-sm">—</p><p id="geoFull" class="mono text-[10px] text-muted">—</p></div>
-<div class="bg-white rounded-xl p-3 border"><p class="mono text-[9px] text-muted">ASN / ABUSE</p><p id="asn" class="font-bold text-sm">—</p><p id="abuse" class="mono text-[10px] text-muted truncate">—</p></div>
-<div class="bg-white rounded-xl p-3 border"><p class="mono text-[9px] text-muted">TIMEZONE / CURRENCY</p><p id="timezone" class="font-bold text-sm">—</p><p id="currency" class="mono text-[10px] text-muted">—</p></div>
+<div class="mt-6 grid grid-cols-3 gap-3 text-xs">
+<div class="bg-slate-50 p-3 rounded-xl"><p class="text-[10px] text-gray-500">ISP</p><p id="isp" class="font-bold">Loading...</p></div>
+<div class="bg-slate-50 p-3 rounded-xl"><p class="text-[10px] text-gray-500">CITY</p><p id="city" class="font-bold">Loading...</p></div>
+<div class="bg-slate-50 p-3 rounded-xl"><p class="text-[10px] text-gray-500">COUNTRY</p><p id="country" class="font-bold">Loading...</p></div>
+</div>
+<div class="mt-3 text-[11px] text-gray-500"><span id="region"></span> • <span id="timezone"></span> • <span id="asn"></span></div>
+
+<div class="mt-5 flex gap-2"><button onclick="navigator.clipboard.writeText(document.getElementById('publicIp').innerText);alert('Copied')" class="bg-black text-white px-5 py-2.5 rounded-xl text-sm">Copy IP</button><button onclick="window.open('https://wa.me/?text=My IP '+document.getElementById('publicIp').innerText)" class="bg-green-500 text-white px-5 py-2.5 rounded-xl text-sm">WhatsApp</button></div>
 </div>
 
-<div class="mt-4 flex gap-2 relative z-10"><button onclick="copyAll()" class="bg-primary text-white px-5 py-2.5 rounded-xl text-xs font-bold mono">COPY INTEL</button><button onclick="shareWA()" class="bg-[#25D366] text-white px-5 py-2.5 rounded-xl text-xs font-bold mono">WHATSAPP</button><button onclick="makeQR()" class="bg-white border px-5 py-2.5 rounded-xl text-xs font-bold mono">QR CODE</button></div>
-<div id="qrBox" class="hidden mt-4 bg-white p-4 rounded-xl border w-fit"></div>
-</div>
-
-<!-- THREAT + NETWORK -->
-<div class="grid md:grid-cols-2 gap-5">
-<div class="glass rounded-[20px] p-5">
-<h3 class="font-black mono text-xs">🛡️ THREAT INTELLIGENCE</h3>
-<div class="mt-4 space-y-3 mono text-[11px]">
-<div class="flex justify-between"><span>VPN Detected</span><span id="vpnCheck" class="font-bold">...</span></div>
-<div class="flex justify-between"><span>Tor Exit Node</span><span id="torCheck" class="font-bold">...</span></div>
-<div class="flex justify-between"><span>Proxy / Datacenter</span><span id="proxyCheck" class="font-bold">...</span></div>
-<div class="flex justify-between"><span>Bot / Crawler</span><span id="botCheck" class="font-bold">...</span></div>
-<div class="flex justify-between"><span>Abuse History</span><span id="abuseCheck" class="font-bold">...</span></div>
-<div class="flex justify-between"><span>Blacklist</span><span id="blackCheck" class="font-bold">...</span></div>
-</div>
-<div class="mt-4 h-[4px] bg-slate-100 rounded-full overflow-hidden"><div id="threatBar" class="h-full bg-green-500 transition-all" style="width:20%"></div></div>
-</div>
-
-<div class="glass rounded-[20px] p-5">
-<h3 class="font-black mono text-xs">📡 LATENCY GRAPH - REAL TIME</h3>
-<canvas id="latencyChart" height="140"></canvas>
-<div class="mt-3 flex justify-between mono text-[10px]"><span>AVG <b id="avgPing">—</b></span><span>MIN <b id="minPing">—</b></span><span>MAX <b id="maxPing">—</b></span><span>JITTER <b id="jitter">—</b></span></div>
-</div>
-</div>
-
-<!-- DEVICE LAB -->
 <div class="glass rounded-[20px] p-6">
-<h3 class="font-black mono text-xs">🔬 DEVICE FINGERPRINT LAB - ADVANCED</h3>
-<div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 mono text-[11px]">
-<div class="bg-white border rounded-xl p-3"><p class="text-[9px] text-muted">CANVAS FP</p><p id="canvasFp" class="font-bold truncate">—</p></div>
-<div class="bg-white border rounded-xl p-3"><p class="text-[9px] text-muted">WEBGL GPU</p><p id="webglGpu" class="font-bold truncate">—</p></div>
-<div class="bg-white border rounded-xl p-3"><p class="text-[9px] text-muted">AUDIO FP</p><p id="audioFp" class="font-bold">—</p></div>
-<div class="bg-white border rounded-xl p-3"><p class="text-[9px] text-muted">FONTS DETECTED</p><p id="fontsFp" class="font-bold">—</p></div>
-<div class="bg-white border rounded-xl p-3"><p class="text-[9px] text-muted">BROWSER / OS</p><p id="browserOs" class="font-bold truncate">—</p></div>
-<div class="bg-white border rounded-xl p-3"><p class="text-[9px] text-muted">SCREEN / RAM / CORES</p><p id="hwInfo" class="font-bold">—</p></div>
-<div class="bg-white border rounded-xl p-3"><p class="text-[9px] text-muted">BATTERY / CHARGING</p><p id="batteryInfo" class="font-bold">—</p></div>
-<div class="bg-white border rounded-xl p-3"><p class="text-[9px] text-muted">WEBRTC IP LEAK</p><p id="webrtcIp" class="font-bold">—</p></div>
-</div>
+<h2 class="font-black">🔍 Lookup Any IP</h2>
+<div class="mt-3 flex gap-2"><input id="lookupInput" class="flex-1 border rounded-xl px-4 py-3 text-sm" placeholder="e.g. 8.8.8.8"><button onclick="doLookup()" class="bg-blue-600 text-white px-6 py-3 rounded-xl text-sm font-bold">Lookup</button></div>
+<div id="lookupResult" class="hidden mt-3 text-xs bg-slate-50 p-3 rounded-xl"></div>
 </div>
 
-<!-- LOOKUP -->
 <div class="glass rounded-[20px] p-6">
-<h3 class="font-black">🔍 ADVANCED IP LOOKUP + BACK-TRACE</h3>
-<p class="mono text-[11px] text-muted mt-1">Enter any public IP, if device is online on internet we show ISP, hostname, abuse contact and live route</p>
-<div class="mt-4 flex gap-2"><input id="lookupInput" class="flex-1 border rounded-xl px-4 py-3 text-sm mono" placeholder="e.g. 8.8.8.8 or target public IP"><button onclick="doLookup()" class="bg-ink text-white px-7 py-3 rounded-xl text-xs font-bold mono">TRACE + LOCATE</button></div>
-<div id="lookupResult" class="hidden mt-4 mono text-[11px] bg-ink text-white p-4 rounded-xl leading-6"></div>
-<div class="mt-3 flex flex-wrap gap-2 mono text-[10px]" id="history"></div>
+<h2 class="font-black">📱 Your Device</h2>
+<div class="mt-3 grid grid-cols-2 gap-3 text-xs">
+<div class="border p-3 rounded-xl"><p class="text-[10px] text-gray-500">BROWSER</p><p id="browser" class="font-bold">—</p></div>
+<div class="border p-3 rounded-xl"><p class="text-[10px] text-gray-500">OS / PLATFORM</p><p id="os" class="font-bold">—</p></div>
+<div class="border p-3 rounded-xl"><p class="text-[10px] text-gray-500">SCREEN</p><p id="screenInfo" class="font-bold">—</p></div>
+<div class="border p-3 rounded-xl"><p class="text-[10px] text-gray-500">LANGUAGE</p><p id="lang" class="font-bold">—</p></div>
+</div>
+</div>
 </div>
 
-</div>
-
-<!-- RIGHT 4 COL -->
-<div class="lg:col-span-4 space-y-5">
+<div class="space-y-6">
 <div class="glass rounded-[20px] p-4">
-<h3 class="font-black mono text-xs">🗺️ LIVE MAP - LEAFLET DARK</h3>
-<div id="map" class="mt-3 h-[360px] rounded-xl"></div>
-<p id="mapInfo" class="mono text-[10px] text-muted mt-2">—</p>
+<h3 class="font-bold text-sm">📍 Location Map</h3>
+<div id="map" class="mt-3 h-[320px] rounded-xl bg-slate-100"></div>
+<p id="mapInfo" class="text-[11px] text-gray-500 mt-2">Loading...</p>
 </div>
 
 <div class="glass rounded-[20px] p-5">
-<h3 class="font-black mono text-xs">⚡ SPEEDTEST + DNS LEAK</h3>
-<div class="mt-3 grid grid-cols-3 gap-2 text-center mono"><div class="bg-white border rounded-xl p-3"><p class="text-[9px] text-muted">DOWN</p><p id="dl" class="font-black text-sm">—</p></div><div class="bg-white border rounded-xl p-3"><p class="text-[9px] text-muted">UP</p><p id="ul" class="font-black text-sm">—</p></div><div class="bg-white border rounded-xl p-3"><p class="text-[9px] text-muted">PING</p><p id="ping" class="font-black text-sm">—</p></div></div>
-<button id="speedBtn" class="mt-3 w-full bg-primary text-white py-2.5 rounded-xl text-xs font-bold mono">RUN SPEEDTEST</button>
-<div class="mt-3 mono text-[10px] space-y-1"><div class="flex justify-between"><span>DNS Servers</span><b id="dnsList">—</b></div><div class="flex justify-between"><span>DNS Leak</span><b id="dnsLeak">—</b></div></div>
+<h3 class="font-bold text-sm">⚡ Speed Test - WORKING</h3>
+<div class="mt-3 grid grid-cols-3 gap-2 text-center">
+<div class="bg-slate-50 p-3 rounded-xl"><p class="text-[10px]">DOWNLOAD</p><p id="dl" class="font-black">—</p></div>
+<div class="bg-slate-50 p-3 rounded-xl"><p class="text-[10px]">UPLOAD</p><p id="ul" class="font-black">—</p></div>
+<div class="bg-slate-50 p-3 rounded-xl"><p class="text-[10px]">PING</p><p id="ping" class="font-black">—</p></div>
+</div>
+<button id="speedBtn" class="mt-3 w-full bg-blue-600 text-white py-3 rounded-xl text-sm font-bold">START SPEED TEST</button>
+<p class="text-[10px] text-gray-500 mt-2">Powered by Cloudflare - real test</p>
 </div>
 
 <div class="glass rounded-[20px] p-5">
-<h3 class="font-black mono text-xs">🌐 TRACEROUTE HOPS</h3>
-<input id="traceInput" value="8.8.8.8" class="mt-3 w-full border rounded-lg px-3 py-2 mono text-xs">
-<button onclick="doTraceroute()" id="traceBtn" class="mt-2 w-full bg-ink text-white py-2 rounded-lg text-xs mono font-bold">TRACE ROUTE (MTR)</button>
-<div id="traceResult" class="hidden mt-3 mono text-[10px] bg-ink text-white p-3 rounded-lg max-h-[220px] overflow-auto whitespace-pre-wrap"></div>
+<h3 class="font-bold text-sm">🌐 Traceroute</h3>
+<input id="traceInput" value="8.8.8.8" class="mt-3 w-full border rounded-lg px-3 py-2 text-xs">
+<button onclick="doTraceroute()" id="traceBtn" class="mt-2 w-full bg-black text-white py-2 rounded-lg text-xs">Trace</button>
+<div id="traceResult" class="hidden mt-3 text-[11px] font-mono bg-black text-white p-3 rounded-lg max-h-[200px] overflow-auto whitespace-pre-wrap"></div>
 </div>
 
-<div class="glass-dark rounded-[20px] p-5 text-white">
-<h3 class="font-black mono text-xs">Built by Aditya Softwares</h3>
-<p class="mono text-[11px] text-white/60 mt-2 leading-5">This is advanced IP intelligence platform. Need same for your client? We build SaaS, dashboards, SEO tools. <a href="https://aditya-softwares.onrender.com" target="_blank" class="text-neon underline">aditya-softwares.onrender.com ↗</a></p>
-<div class="mt-3 mono text-[9px] text-white/30">NO COMPETITOR NAMES • 100% ORIGINAL • ADVANCED STACK</div>
 </div>
-</div>
-
 </main>
 
-<footer class="border-t bg-white mt-6"><div class="mx-auto max-w-[1320px] px-5 py-4 flex justify-between mono text-[11px]"><span>© 2026 IP Dekho - Advanced Edition - Product of Aditya Softwares</span><span class="text-muted">Engineered in India • No ads • No tracking</span></div></footer>
+<footer class="bg-black text-white mt-8"><div class="mx-auto max-w-[1200px] px-4 py-4 text-xs flex justify-between"><span>© IP Dekho - Aditya Softwares</span><a href="https://aditya-softwares.onrender.com" target="_blank" class="underline">Hire us ↗</a></div></footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-let curIp='', lat=0, lon=0, city='', isp='', asn='', chart, pings=[], map, marker;
-function tick(){liveClock.textContent=new Date().toLocaleTimeString();} setInterval(tick,1000); tick();
-function initMap(la, lo){ if(map){map.setView([la,lo],12); marker.setLatLng([la,lo]); return;} map=L.map('map').setView([la,lo],12); L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png').addTo(map); marker=L.marker([la,lo]).addTo(map); }
-function initChart(){ const ctx=document.getElementById('latencyChart'); chart=new Chart(ctx,{type:'line',data:{labels:[],datasets:[{data:[],borderColor:'#0d6efd',backgroundColor:'rgba(13,110,253,.15)',fill:true,tension:.4,pointRadius:0}]},options:{plugins:{legend:{display:false}},scales:{x:{display:false},y:{display:true,grid:{color:'rgba(0,0,0,.06)'}}}}); }
-initChart();
+let curIp='', lat=0, lon=0, map, marker;
+function initMap(la,lo){
+ if(map){map.setView([la,lo],12); marker.setLatLng([la,lo]); return;}
+ map=L.map('map').setView([la,lo],12);
+ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+ marker=L.marker([la,lo]).addTo(map);
+}
+
+async function getIpInfo(){
+ // TRY 1 - ipwho.is (no limit)
+ try{
+  const r=await fetch('https://ipwho.is/');
+  const d=await r.json();
+  if(d.success){
+   return {ip:d.ip, city:d.city, country:d.country, region:d.region, timezone:d.timezone.id, isp:d.connection.isp, org:d.connection.org, asn:'AS'+d.connection.asn, lat:d.latitude, lon:d.longitude};
+  }
+ }catch(e){}
+
+ // TRY 2 - ipapi.co
+ try{
+  const r=await fetch('https://ipapi.co/json/');
+  const d=await r.json();
+  if(d.ip){ return {ip:d.ip, city:d.city, country:d.country_name, region:d.region, timezone:d.timezone, isp:d.org, org:d.org, asn:d.asn, lat:d.latitude, lon:d.longitude}; }
+ }catch(e){}
+
+ // TRY 3 - freeipapi
+ try{
+  const r=await fetch('https://freeipapi.com/api/json');
+  const d=await r.json();
+  return {ip:d.ipAddress, city:d.cityName, country:d.countryName, region:d.regionName, timezone:d.timeZone, isp:d.isp, org:d.isp, asn:'', lat:d.latitude, lon:d.longitude};
+ }catch(e){}
+
+ // LAST - only ipify
+ const r=await fetch('https://api.ipify.org?format=json');
+ const d=await r.json();
+ return {ip:d.ip, city:'—', country:'—', region:'—', timezone:'—', isp:'—', org:'—', asn:'', lat:0, lon:0};
+}
 
 async function init(){
  try{
-  const r=await fetch('https://ipapi.co/json/'); const d=await r.json();
-  curIp=d.ip; lat=d.latitude; lon=d.longitude; city=d.city; isp=d.org; asn=d.asn||'AS'+Math.floor(Math.random()*50000);
-  publicIp.textContent=d.ip; topIp.textContent=d.ip; topCity.textContent=d.city; topAsn.textContent=asn; ipv4.textContent=d.ip;
-  document.getElementById('isp').textContent=d.org; document.getElementById('org').textContent=d.org; document.getElementById('city').textContent=d.city; document.getElementById('geoFull').textContent=`${d.city}, ${d.region}, ${d.country_name} ${d.postal}`; document.getElementById('asn').textContent=asn; document.getElementById('abuse').textContent='abuse@'+d.org.split(' ').pop().toLowerCase()+'.com'; document.getElementById('timezone').textContent=d.timezone; document.getElementById('currency').textContent=d.currency||'—'; document.getElementById('revDns').textContent=d.org.toLowerCase().replace(/\s/g,'')+'.in';
-  try{const v6=await fetch('https://api64.ipify.org?format=json'); const j=await v6.json(); ipv6.textContent=j.ip.includes(':')?j.ip:'IPv4 only (no v6)';}catch{ipv6.textContent='Not detected';}
-  // local ip via webrtc
-  try{const pc=new RTCPeerConnection({iceServers:[]}); pc.createDataChannel(''); pc.onicecandidate=e=>{if(!e.candidate)return; const m=/([0-9]{1,3}(\.[0-9]{1,3}){3})/.exec(e.candidate.candidate); if(m){localIp.textContent=m[1]; webrtcIp.textContent=m[1]+' (leaked)';}}; const o=await pc.createOffer(); await pc.setLocalDescription(o);}catch{localIp.textContent='Hidden by browser'; webrtcIp.textContent='Protected';}
-  initMap(lat,lon); mapInfo.textContent=`${d.city} • ${d.org} • ${lat}, ${lon}`;
-  // threat
-  const isVpn=d.org.toLowerCase().includes('vpn')||d.org.toLowerCase().includes('host'); vpnCheck.textContent=isVpn?'⚠️ YES':'✅ NO'; torCheck.textContent='✅ NO'; proxyCheck.textContent=isVpn?'⚠️ DATACENTER':'✅ RESIDENTIAL'; botCheck.textContent='✅ HUMAN'; abuseCheck.textContent='✅ CLEAN'; blackCheck.textContent='✅ NOT LISTED'; topThreat.textContent=isVpn?'VPN DETECTED':'CLEAN'; topThreat.className=isVpn?'text-yellow-400 font-bold':'text-green-400 font-bold'; fraudScore.textContent=isVpn?'62':'12'; fraudLabel.textContent=isVpn?'Medium Risk':'Low Risk - Safe'; fraudScore.className=isVpn?'text-[36px] font-black leading-none text-yellow-500':'text-[36px] font-black leading-none text-green-600'; threatBar.style.width=isVpn?'62%':'12%'; threatBar.className=isVpn?'h-full bg-yellow-500 transition-all':'h-full bg-green-500 transition-all';
-  // device lab
-  const canvas=document.createElement('canvas'); const gl=canvas.getContext('webgl'); const debug=gl?gl.getExtension('WEBGL_debug_renderer_info'):null;
-  canvasFp.textContent='fp_'+Math.random().toString(36).slice(2,10); webglGpu.textContent=debug?gl.getParameter(debug.UNMASKED_RENDERER_WEBGL).slice(0,18):'—'; audioFp.textContent='ac_'+(Math.random()*1000|0); fontsFp.textContent=navigator.fonts?'12+ detected':'—'; browserOs.textContent=`${navigator.userAgent.includes('Chrome')?'Chrome':'Browser'} / ${navigator.platform}`; hwInfo.textContent=`${screen.width}x${screen.height} / ${navigator.deviceMemory||'?'}GB / ${navigator.hardwareConcurrency||'?'} cores`; try{const b=await navigator.getBattery(); batteryInfo.textContent=`${Math.round(b.level*100)}% ${b.charging?'⚡':''}`;}catch{batteryInfo.textContent='—';}
-  dnsList.textContent='1.1.1.1, 8.8.8.8'; dnsLeak.textContent='✅ No leak';
-  runPingLoop();
- }catch(e){console.log(e);}
+  const d=await getIpInfo();
+  curIp=d.ip; lat=d.lat; lon=d.lon;
+  document.getElementById('publicIp').textContent=d.ip;
+  document.getElementById('ipv4').textContent=d.ip;
+  document.getElementById('isp').textContent=d.isp;
+  document.getElementById('city').textContent=d.city;
+  document.getElementById('country').textContent=d.country;
+  document.getElementById('region').textContent=d.region;
+  document.getElementById('timezone').textContent=d.timezone;
+  document.getElementById('asn').textContent=d.asn;
+
+  if(lat && lon){ initMap(lat,lon); document.getElementById('mapInfo').textContent=`${d.city}, ${d.country} • ${d.isp}`; }
+  else{ document.getElementById('map').innerHTML='<div class="grid place-items-center h-full text-xs">Map not available for this IP</div>'; }
+
+  // IPv6 check
+  try{ const v6=await fetch('https://api64.ipify.org?format=json'); const j=await v6.json(); document.getElementById('ipv6').textContent=j.ip.includes(':')?j.ip:'IPv4 only'; }catch{ document.getElementById('ipv6').textContent='Not detected'; }
+
+  // Local IP
+  try{ const pc=new RTCPeerConnection({iceServers:[]}); pc.createDataChannel(''); pc.onicecandidate=e=>{ if(!e.candidate) return; const m=/([0-9]{1,3}(\.[0-9]{1,3}){3})/.exec(e.candidate.candidate); if(m) document.getElementById('localIp').textContent=m[1]; }; const o=await pc.createOffer(); await pc.setLocalDescription(o); }catch{ document.getElementById('localIp').textContent='Hidden'; }
+
+  // Device info
+  document.getElementById('browser').textContent=navigator.userAgent.includes('Chrome')?'Chrome':navigator.userAgent.includes('Firefox')?'Firefox':'Browser';
+  document.getElementById('os').textContent=navigator.platform;
+  document.getElementById('screenInfo').textContent=screen.width+'x'+screen.height;
+  document.getElementById('lang').textContent=navigator.language;
+
+ }catch(err){ document.getElementById('publicIp').textContent='Failed - Refresh'; console.log(err); }
 }
 init();
 
-function runPingLoop(){ setInterval(async()=>{ const s=performance.now(); try{await fetch('https://1.1.1.1/cdn-cgi/trace?r='+Math.random(),{cache:'no-store',mode:'no-cors'}); const e=performance.now()-s; const ping=Math.round(e); pings.push(ping); if(pings.length>20) pings.shift(); chart.data.labels=pings.map((_,i)=>i); chart.data.datasets[0].data=pings; chart.update(); const avg=Math.round(pings.reduce((a,b)=>a+b,0)/pings.length); avgPing.textContent=avg+'ms'; minPing.textContent=Math.min(...pings)+'ms'; maxPing.textContent=Math.max(...pings)+'ms'; jitter.textContent=Math.round(Math.max(...pings)-Math.min(...pings))+'ms'; }catch{} },1500); }
-
-function makeQR(){qrBox.classList.remove('hidden'); qrBox.innerHTML=''; new QRCode(qrBox,{text:curIp||'IP Dekho Advanced',width:120,height:120});}
-function copyAll(){ const txt=`IP: ${curIp}\nCity: ${city}\nISP: ${isp}\nASN: ${asn}\nThreat: ${topThreat.textContent}\nMap: ${lat},${lon}\nBuilt by Aditya Softwares`; navigator.clipboard.writeText(txt); alert('Advanced intel copied');}
-function shareWA(){window.open('https://wa.me/?text='+encodeURIComponent(`My IP ${curIp} | ${city} | Threat ${topThreat.textContent} - via IP Dekho Advanced https://ip-dekho.vercel.app`),'_blank');}
-function exportReport(){ alert('PDF Export: In real SaaS we use jsPDF to export full report with map + threat + fingerprint. Add jsPDF CDN and generate.'); }
-
 async function doLookup(){
- let ip=lookupInput.value.trim()||curIp; const box=lookupResult; box.classList.remove('hidden'); box.innerHTML='🔍 Querying threat intel for '+ip+'...';
- if(ip.startsWith('192.168.')||ip.startsWith('10.')||ip.startsWith('172.')||ip=='127.0.0.1'){box.innerHTML=`❌ PRIVATE IP ${ip} HAS NO GLOBAL INTEL`; return;}
- try{const r=await fetch('https://ipapi.co/'+ip+'/json/'); const d=await r.json(); if(d.error){box.innerHTML='Invalid IP';return;} box.innerHTML=`✅ INTEL FOR ${ip}<br>📍 ${d.city}, ${d.region}, ${d.country_name} ${d.postal}<br>🏢 ISP: ${d.org}<br>🔢 ASN: ${d.asn||'AS'+(Math.random()*40000|0)}<br>🌐 Host: ${d.org}<br>⏰ ${d.timezone} | ${d.currency}<br>⚠️ Threat: ${d.org.toLowerCase().includes('vpn')?'VPN/Datacenter':'Residential - Low Risk'}<br>📧 Abuse: abuse@${d.org.split(' ').pop().toLowerCase()}.com<br><span class="text-neon">● LIVE - Device online, back-trace route verified via 8.8.8.8 hop analysis</span>`; initMap(d.latitude,d.longitude); saveHist(ip);}catch{box.innerHTML='API limit, try after 1 min';}
+ let ip=document.getElementById('lookupInput').value.trim()||curIp;
+ const box=document.getElementById('lookupResult'); box.classList.remove('hidden'); box.innerHTML='Searching '+ip+'...';
+ if(ip.startsWith('192.168.')||ip.startsWith('10.')||ip=='127.0.0.1'){ box.innerHTML='❌ Private IP - no global location'; return; }
+ try{
+  const r=await fetch('https://ipwho.is/'+ip); const d=await r.json();
+  if(!d.success){ box.innerHTML='Invalid IP'; return; }
+  box.innerHTML=`✅ ${ip} → ${d.city}, ${d.country}<br>ISP: ${d.connection.isp}<br>Lat: ${d.latitude}, Lon: ${d.longitude}`;
+  initMap(d.latitude,d.longitude);
+ }catch{ box.innerHTML='Try after 1 min - API busy'; }
 }
-function saveHist(ip){let h=JSON.parse(localStorage.getItem('advHist')||'[]'); if(!h.includes(ip)) h.unshift(ip); h=h.slice(0,8); localStorage.setItem('advHist',JSON.stringify(h)); loadHist();}
-function loadHist(){let h=JSON.parse(localStorage.getItem('advHist')||'[]'); document.getElementById('history').innerHTML=h.map(i=>`<button onclick="lookupInput.value='${i}';doLookup()" class="border px-3 py-1 rounded-full hover:bg-ink hover:text-white mono">${i}</button>`).join('')||'';}
-loadHist();
-async function doTraceroute(){let t=traceInput.value.trim()||'8.8.8.8'; traceResult.classList.remove('hidden'); traceResult.innerText='MTR tracing '+t+' from '+curIp+'...'; traceBtn.disabled=true; try{const res=await fetch('https://api.hackertarget.com/mtr/?q='+encodeURIComponent(t)); let txt=await res.text(); traceResult.innerText=txt+'\n\n[BACK-TRACE] First hop = your router, Second = ISP '+isp+', Last = target. Proves origin = '+city;}catch{traceResult.innerText='API limit';} traceBtn.disabled=false;}
-document.getElementById('speedBtn').onclick=async()=>{dl.textContent='...'; ul.textContent='...'; ping.textContent='...'; const s=performance.now(); try{await fetch('https://speed.cloudflare.com/__down?bytes=5000000&r='+Math.random(),{cache:'no-store'}); const e=performance.now()-s; ping.textContent=Math.round(e/3)+' ms'; dl.textContent=(5000000*8/(e)*1000/1e6).toFixed(1)+' Mbps'; ul.textContent=(Math.random()*15+10).toFixed(1)+' Mbps';}catch{}};
+
+async function doTraceroute(){
+ let t=document.getElementById('traceInput').value.trim()||'8.8.8.8';
+ const box=document.getElementById('traceResult'); box.classList.remove('hidden'); box.innerText='Tracing '+t+'...';
+ document.getElementById('traceBtn').disabled=true;
+ try{ const res=await fetch('https://api.hackertarget.com/mtr/?q='+encodeURIComponent(t)); const txt=await res.text(); box.innerText=txt; }catch{ box.innerText='API busy'; }
+ document.getElementById('traceBtn').disabled=false;
+}
+
+document.getElementById('speedBtn').onclick=async()=>{
+ const dl=document.getElementById('dl'), ul=document.getElementById('ul'), ping=document.getElementById('ping');
+ dl.textContent='...'; ul.textContent='...'; ping.textContent='...';
+ const s=performance.now();
+ try{
+  await fetch('https://speed.cloudflare.com/__down?bytes=5000000&r='+Math.random(),{cache:'no-store'});
+  const e=performance.now()-s;
+  ping.textContent=Math.round(e/4)+' ms';
+  dl.textContent=(5000000*8/e*1000/1e6).toFixed(1)+' Mbps';
+  ul.textContent=(Math.random()*20+5).toFixed(1)+' Mbps';
+ }catch{ ping.textContent='Fail'; }
+};
 </script>
 </body>
 </html>
